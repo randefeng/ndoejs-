@@ -1,0 +1,181 @@
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta name="format-detection" content="telephone=no" />
+<title>温馨提示</title>
+<!-- <link href="//at.alicdn.com/t/font_322443_kvgze99pv079zfr.css" rel="preload" as="style">
+<link href="//at.alicdn.com/t/font_322443_kvgze99pv079zfr.ttf?t=1522660445168" rel="preload" as="font/ttf" crossorigin>
+<link href="//at.alicdn.com/t/font_313159_2puyq4ggmxx.js" rel="preload" as="script">
+<link href="/ip-pat-web/js/v5/raven/raven.3.26.2.min.js" rel="preload" as="script">
+<link href="/ip-pat-web/js/baidu/baiduStatistics.min.js" rel="preload" as="script"> -->
+<link href="//res.wx.qq.com/open/js/jweixin-1.4.0.js" rel="preload" as="script">
+<link href="//hm.baidu.com/hm.js?4f5e6d65812072c49089f068396b8513" rel="preload" as="script">
+<link rel="dns-prefetch" href="mp.mhealth100.com">
+<link rel="dns-prefetch" href="images.mhealth100.com">
+<link rel="dns-prefetch" href="gcdn.mhealth100.com">
+<link rel="dns-prefetch" href="imgcdn.mhealth100.com">
+<link rel="dns-prefetch" href="at.alicdn.com">
+<link rel="icon" type="image/png" href="/ip-pat-web/images/v5/system/favicon.png">
+<!-- <link rel=stylesheet href="//at.alicdn.com/t/font_322443_kvgze99pv079zfr.css">
+<script src="//at.alicdn.com/t/font_313159_2puyq4ggmxx.js" async="async" crossorigin="anonymous"></script> -->
+<script src="/ip-pat-web/js/iscroll/iscroll.min.js" defer="defer"></script>
+<script src="/ip-pat-web/js/weixin/Bridge.min.js?v=c1e9238a6e" defer="defer"></script>
+<script src="/ip-pat-web/js/fastclick/fastclick.min.js" async="defer"></script>
+<script src="/ip-pat-web/js/polyfill/polyfill.min.js"></script>
+<script src="/ip-pat-web/js/jquery/3.2.1/jquery-3.2.1.min.js"></script>
+
+
+
+		<link rel="stylesheet" href="//gcdn.mhealth100.com/kdui/style/kdui/kdui.min.css?2018120501"/>
+		<script>
+			var isShowVConsole = ''
+			if(isShowVConsole === "show"){
+				$.getScript("//res.wx.qq.com/mmbizwap/zh_CN/htmledition/js/vconsole/3.0.0/vconsole.min.js", function() {
+					var vConsole = new VConsole();
+				})
+			}
+		</script>
+		<script src="//gcdn.mhealth100.com/kdui/js/kdui/kdui.min.js?2018120501" crossorigin="anonymous"></script>
+	
+
+<!-- 全局引入加载中loading -->
+
+<div id="loadingToast" class="kdui-hide">
+	<div class="kdui-mask_transparent"></div>
+	<div class="kdui-toast">
+		<i class="kdui-loading kdui-icon_toast"></i>
+		<p class="kdui-toast__content">数据加载中...</p>
+	</div>
+</div>
+<script type="text/javascript">
+	ui.showLoading('正在加载...');
+	console.log("devicePixelRatio:" + window.devicePixelRatio)
+	document.onreadystatechange = domStateChange;
+	function domStateChange(){
+		if(document.readyState == "complete"){ //当页面加载状态为完全结束时进入 
+				ui.hideLoading();
+		}
+	} 
+</script>
+<!-- 引入高清解决方案 -->
+<script>!function(e){function t(a){if(i[a])return i[a].exports;var n=i[a]={exports:{},id:a,loaded:!1};return e[a].call(n.exports,n,n.exports,t),n.loaded=!0,n.exports}var i={};return t.m=e,t.c=i,t.p="",t(0)}([function(e,t){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var i=window;t["default"]=i.flex=function(e,t){var a=e||100,n=t||1,r=i.document,o=navigator.userAgent,d=o.match(/Android[\S\s]+AppleWebkit\/(\d{3})/i),l=o.match(/U3\/((\d+|\.){5,})/i),c=l&&parseInt(l[1].split(".").join(""),10)>=80,p=navigator.appVersion.match(/(iphone|ipad|ipod)/gi),s=i.devicePixelRatio||1;p||d&&d[1]>534||c||(s=1);var u=1/s,m=r.querySelector('meta[name="viewport"]');localStorage.setItem("initial-scale", u*n);m||(m=r.createElement("meta"),m.setAttribute("name","viewport"),r.head.appendChild(m)),m.setAttribute("content","width=device-width,user-scalable=no,initial-scale="+u+",maximum-scale="+u+",minimum-scale="+u+",viewport-fit=cover"),r.documentElement.style.fontSize=a/2*s*n+"px"},e.exports=t["default"]}]);  
+// var currentScreenW = window.screen.availWidth || 375
+var fontscale = 1
+/*if(currentScreenW < 375 ) {
+	fontscale = currentScreenW/375
+}*/
+flex(100, fontscale);
+</script>
+</script>
+<body onload="load();">
+
+<style>  
+@supports (bottom: env(safe-area-inset-bottom)) {
+	.kdui_wrapper  {
+	  bottom: env(safe-area-inset-bottom);
+	}
+}
+</style>
+<div class="kdui_wrapper vconsole_entry" id="wrapper">
+<div class="kdui_scroller" id="scroller">
+<div id="errorPage" data-ai-shen-url="" class="kdui-flex__item kdui-msg__warp">
+	<div class="kdui-msg">
+		<p class="kdui-msg__pic kdui-msg__pic-error"></p>
+		<p class="kdui-msg__desc">
+			系统异常，请稍后再试
+		</p>
+		<!-- 
+		<div class="kdui-btn__warp">
+			<a href="javascript:;" id="btn_reload" class="kdui-btn kdui-btn__ghost kdui-btn_mini kdui-ml_sm kdui-hide">重试</a>
+			<a href="javascript:;" id="countDown_div" class="kdui-btn kdui-btn__default kdui-btn_disabled kdui-btn_mini kdui-ml_sm">
+				<font>6</font>秒后重试</a>
+			<a href="javascript:;" id="btn_back" class="kdui-btn kdui-btn__ghost-second kdui-btn_mini kdui-ml_sm">返回</a>
+		</div>
+	 -->
+	</div>
+</div>
+
+<div class="kdui-page__ft">
+	<div class="kdui-footer">
+		<div class="js__copyright">Copyright © 1993-2017 金蝶医疗软件科技有限公司</div>
+	</div>
+</div>
+
+</div>
+</div>
+<script>
+	var myScroll;
+	function loadIscroll() {
+		myScroll = new IScroll('#wrapper', {
+			preventDefault: false,
+			scrollbars: true,
+			mouseWheel: true,
+			fadeScrollbars: true/*,
+			probeType: 3*/
+		}); 
+		document.getElementById("wrapper").addEventListener('touchmove', function(event) { event.preventDefault() }, false)
+		if(typeof loadIscrollCb != "undefined") {
+			loadIscrollCb();
+		}
+	}
+</script>
+<script>"use strict";function bodyOnload(){errorPage.initPage()}var errorPage=function(){var n=$("#errorPage"),t=n.data("aiShenUrl"),e=window.location,r=function(){"undefined"!=typeof history&&(history.pushState(null,null,document.URL+"&rand="+Math.random()),window.addEventListener("popstate",function(n){e.replace(t)}))};return{initPage:function(){!Util.checkNull(t)&&r()}}}();
+//# sourceMappingURL=error.min.js.map
+</script>
+<!-- 通用页面底部 -->
+
+<!-- 全局引入加载中loading -->
+
+<div id="loadingToast" class="kdui-hide">
+	<div class="kdui-mask_transparent"></div>
+	<div class="kdui-toast">
+		<i class="kdui-loading kdui-icon_toast"></i>
+		<p class="kdui-toast__content">数据加载中...</p>
+	</div>
+</div>
+<!-- 全局引入toast结果提示  -->
+
+<div id="toast" class="kdui-hide">
+	<div class="kdui-mask_transparent"></div>
+	<div class="kdui-toast kdui-toast_mini">
+		<p class="kdui-toast__content">取消成功</p>
+	</div>
+</div>
+<div class="footer-hospitial-name" style="display:none"></div> 
+<div class="footer3"></div>
+<!-- 新版调用接口需要用到的token -->
+<input type="hidden" id="userToken" value=""/>
+<input type="hidden" id="userOpenId" value=""/>
+<input type="hidden" id="userSessionId" value="0925FD5520B084B030A7E40DC13573FF"/>
+
+<!--维护提示-->
+
+<!-- 判断是否开通了预约挂号排班界面新增当天排班 -->
+
+
+
+<!-- <script src="/ip-pat-web/js/fastclick/fastclick.min.js" async="async"></script>
+<script src="/ip-pat-web/js/iscroll/iscroll.min.js" defer="defer"></script>
+<script src="/ip-pat-web/js/weixin/Bridge.min.js?v=c1e9238a6e" defer="defer"></script> -->
+<!-- 内联方式的引入v5版本通用js -->
+<script>"use strict";function _loadCss(e){var t={dataType:"text",success:function(e){var t=document.createElement("style");t.innerHTML=e,document.getElementsByTagName("head")[0].appendChild(t)}};$.cachedScript(e,t)}function _getIconFontResource(){$.cachedScript("//at.alicdn.com/t/font_313159_7t8r7qfr01o.js"),_loadCss("//at.alicdn.com/t/font_322443_hg9du3wuo8q.css")}function load(){setTimeout(function(){_getIconFontResource()},100),_setCurrentEnv(),$.cachedScript(Util.getBasePath()+"/js/v5/raven/raven.3.26.2.min.js",{success:function(e){try{catchJsError()}catch(e){console.error("执行坚听js error脚本错误")}}}),FastClick.attach(document.body);var e={};if(isShowTenantName&&"true"===isShowTenantName&&(e.hospitalShortName=hospitalShortName),showCopyright(e),"true"===isAppointmentRegisterMerge&&modifyTitle(),"true"!==$("#showOption").val()){Bridge.getInstance({jsApiList:["hideOptionMenu"]});var t=!1;Bridge.ready(function(){t||(t=!0,Bridge.instant.hideOptionMenu())})}showMaintenance(),"undefined"!=typeof loadIscroll&&loadIscroll(),"undefined"!=typeof bodyOnload&&bodyOnload(),Util.checkNull(tenantName)||"wxcity"===isWeixincity&&showName(tenantName),"undefined"!=typeof showAd&&showAd();var n=$("#pageOperatingLogs_pageId");void 0===n||Util.checkNull(n.val())||ajaxToPrintPageLogs(),"00404"===tenantId?($.cachedScript(Util.getBasePath()+"/js/sa/sa.js"),window._hmt=void 0):(window._hmt=void 0,$.cachedScript(Util.getBasePath()+"/js/baidu/baiduStatistics.min.js")),setTimeout(function(){"undefined"!=typeof myScroll&&myScroll.refresh()},100)}function showMaintenance(){if($(".js_kdui-maintenance")[0]){var e={dialogRoot:".js_kdui-maintenance",dialogTitle:"系统维护时间提示",primaryBtnTitle:"我知道了",defaultBtnTile:"",dialogBodyContent:$("#maintenanceTime").html()+"为系统维护时间，在该时间段内系统将限制支付及退费。",primaryBtnCb:function(){var e={method:"post",ajaxUrl:Util.getBasePath()+"/commonEntry!ajaxchangeUserSystemMaintenanceToHaspress.do",ajaxData:{openId:$("#userOpenId").val()},loadingText:"正在关闭窗口...",loadingType:"block",successCb:function(e){},failCb:function(e){},errorCb:function(){}};new AjaxApi(e).run()}};ui_dialog.init(e).show()}}function _setCurrentEnv(){var e=window.location.hostname,t="prod";"dev.mhealth100.com"===e?t="dev":"test3.mhealth100.com"===e&&(t="test"),window.sessionStorage.setItem("ip-pat-web-env",t)}function showName(e){$(".js__copyright").html(e)}function checkSensitive(e,t){Util.checkNull(e)?t.call(null,null,null):$.ajax({url:"//api.mhealth100.com/open-api/sensitive.do",contentType:"application/json",data:JSON.stringify({text:e}),type:"post",success:function(e){if(e=JSON.parse(e||"{}"),console.log(e),e&&"0"==e.resultCode){var n=JSON.parse(e.emotion||"{}"),o=JSON.parse(e.polity||"{}");t.call(null,n,o)}else t.call(null,null,null)},error:function(){ui.hideLoading(),t.call(null,null,null)}})}function catchJsError(){Raven.config("//3b2b33a1556e4a5aa1afb2141ff6bdef@sentry.mhealth100.com//2",{release:"update@2019-06-05",whitelistUrls:[/^https\:\/\/.*\.mhealth100\.com/],environment:window.sessionStorage.getItem("ip-pat-web-env"),ignoreErrors:["$ is not a function","$.extend is not a function","$.cachedScript is not a function","$.ajax is not a function","$.post is not a function","$.smartScroll is not a function","Cannot read property 'refresh' of undefined"],tags:{tenantId:tenantId,openId:openId,healthCardNo:healthCardNo}}).install(),window.addEventListener&&window.addEventListener("error",function(e){if(e.message)/Script error\./.test(e.message)||Raven.captureException(e,{logger:"selfupload"});else{var t,n=(t=e.target?e.target:e.srcElement)&&t.outerHTML;n&&n.length>200&&(n=n.slice(0,200));var o={message:"resourceError",target:{src:t&&t.src}};/^https?.*\.mhealth100.com.*\.js(\?|$)/.test(o.target.src)&&Raven.captureMessage(o.target.src,{logger:o.message})}},!0),window.addEventListener&&window.addEventListener("unhandledrejection",function(e){Raven.captureException(e.reason,{logger:"promise"})})}function showCopyright(e){var t=new Date,n=t.getFullYear(),o="金蝶医疗软件科技有限公司";void 0!==e&&void 0!==e.hospitalShortName&&(o=e.hospitalShortName+" 金蝶医疗"),$(".js__copyright").html("Copyright © 1993-"+n+" "+o)}function modifyTitle(){document.title=document.title.replace("预约挂号","")}function ajaxToPrintPageLogs(){$.ajax({url:Util.getBasePath()+"/pageStatisticsLogs!printPageOperatLogs.do",data:$("#pageOperatingLogsForm").serialize(),type:"post",cache:!1,dataType:"json",success:function(e){},error:function(){}})}function showLoading(e){ui.showLoading(e)}function hideLoading(){ui.hideLoading()}var tenantId="00363",openId="",healthCardNo="",tenantName="西京医院",isWeixincity="",isShowTenantName='false',hospitalShortName='',isAppointmentRegisterMerge="true";jQuery.cachedScript=function(e,t){return t=$.extend({dataType:"script",cache:!0,timeout:3e3,url:e},t||{}),jQuery.ajax(t)};var listenerHisory=function(){var e=sessionStorage.getItem("aiShenUrl");Util.checkNull(e)||"undefined"==typeof history||(history.pushState(null,null,document.URL+"&rand="+Math.random()),window.addEventListener("popstate",function(t){console.log("通过popstate回到前面一个页面,aiShenUrl"+e),window.location.href=e}))};"serviceWorker"in navigator&&window.addEventListener("load",function(){navigator.serviceWorker.register("/ip-pat-web/service-worker.js?201807190002").then(function(e){console.log("ServiceWorker registration successful with scope: ",e.scope)}).catch(function(e){console.log("ServiceWorker registration failed: ",e)})});
+//# sourceMappingURL=common_footer_v5.min.js.map
+</script>
+</body>
+</html>
+<!-- 引入记录页面操作日志需要用到隐藏form表单 -->
+<form id="pageOperatingLogsForm" class="hide">
+	<input type="hidden" name="pageOperatingLogs.pageId" id="pageOperatingLogs_pageId" value="ERROR_PAGE" />
+</form>

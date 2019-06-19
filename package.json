@@ -1,0 +1,29 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "node.js",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "readline": "^1.3.0",
+    "readline-sync": "^1.4.9",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "iconv-lite": "^0.4.24"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app",
+    "build": "babel src -d app"
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
+  },
+  "author": "",
+  "license": "ISC"
+}
