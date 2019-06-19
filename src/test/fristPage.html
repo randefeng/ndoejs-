@@ -1,0 +1,794 @@
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta name="format-detection" content="telephone=no" />
+<title>预约挂号选择时间</title>
+<!-- <link href="//at.alicdn.com/t/font_322443_kvgze99pv079zfr.css" rel="preload" as="style">
+<link href="//at.alicdn.com/t/font_322443_kvgze99pv079zfr.ttf?t=1522660445168" rel="preload" as="font/ttf" crossorigin>
+<link href="//at.alicdn.com/t/font_313159_2puyq4ggmxx.js" rel="preload" as="script">
+<link href="/ip-pat-web/js/v5/raven/raven.3.26.2.min.js" rel="preload" as="script">
+<link href="/ip-pat-web/js/baidu/baiduStatistics.min.js" rel="preload" as="script"> -->
+<link href="//res.wx.qq.com/open/js/jweixin-1.4.0.js" rel="preload" as="script">
+<link href="//hm.baidu.com/hm.js?4f5e6d65812072c49089f068396b8513" rel="preload" as="script">
+<link rel="dns-prefetch" href="mp.mhealth100.com">
+<link rel="dns-prefetch" href="images.mhealth100.com">
+<link rel="dns-prefetch" href="gcdn.mhealth100.com">
+<link rel="dns-prefetch" href="imgcdn.mhealth100.com">
+<link rel="dns-prefetch" href="at.alicdn.com">
+<link rel="icon" type="image/png" href="/ip-pat-web/images/v5/system/favicon.png">
+<!-- <link rel=stylesheet href="//at.alicdn.com/t/font_322443_kvgze99pv079zfr.css">
+<script src="//at.alicdn.com/t/font_313159_2puyq4ggmxx.js" async="async" crossorigin="anonymous"></script> -->
+<script src="/ip-pat-web/js/iscroll/iscroll.min.js" defer="defer"></script>
+<script src="/ip-pat-web/js/weixin/Bridge.min.js?v=c1e9238a6e" defer="defer"></script>
+<script src="/ip-pat-web/js/fastclick/fastclick.min.js" async="defer"></script>
+<script src="/ip-pat-web/js/polyfill/polyfill.min.js"></script>
+<script src="/ip-pat-web/js/jquery/3.2.1/jquery-3.2.1.min.js"></script>
+
+
+
+		<link rel="stylesheet" href="//gcdn.mhealth100.com/kdui/style/kdui/kdui.min.css?2018120501"/>
+		<script>
+			var isShowVConsole = ''
+			if(isShowVConsole === "show"){
+				$.getScript("//res.wx.qq.com/mmbizwap/zh_CN/htmledition/js/vconsole/3.0.0/vconsole.min.js", function() {
+					var vConsole = new VConsole();
+				})
+			}
+		</script>
+		<script src="//gcdn.mhealth100.com/kdui/js/kdui/kdui.min.js?2018120501" crossorigin="anonymous"></script>
+	
+
+<!-- 全局引入加载中loading -->
+
+<div id="loadingToast" class="kdui-hide">
+	<div class="kdui-mask_transparent"></div>
+	<div class="kdui-toast">
+		<i class="kdui-loading kdui-icon_toast"></i>
+		<p class="kdui-toast__content">数据加载中...</p>
+	</div>
+</div>
+<script type="text/javascript">
+	ui.showLoading('正在加载...');
+	console.log("devicePixelRatio:" + window.devicePixelRatio)
+	document.onreadystatechange = domStateChange;
+	function domStateChange(){
+		if(document.readyState == "complete"){ //当页面加载状态为完全结束时进入 
+				ui.hideLoading();
+		}
+	} 
+</script>
+<!-- 引入高清解决方案 -->
+<script>!function(e){function t(a){if(i[a])return i[a].exports;var n=i[a]={exports:{},id:a,loaded:!1};return e[a].call(n.exports,n,n.exports,t),n.loaded=!0,n.exports}var i={};return t.m=e,t.c=i,t.p="",t(0)}([function(e,t){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var i=window;t["default"]=i.flex=function(e,t){var a=e||100,n=t||1,r=i.document,o=navigator.userAgent,d=o.match(/Android[\S\s]+AppleWebkit\/(\d{3})/i),l=o.match(/U3\/((\d+|\.){5,})/i),c=l&&parseInt(l[1].split(".").join(""),10)>=80,p=navigator.appVersion.match(/(iphone|ipad|ipod)/gi),s=i.devicePixelRatio||1;p||d&&d[1]>534||c||(s=1);var u=1/s,m=r.querySelector('meta[name="viewport"]');localStorage.setItem("initial-scale", u*n);m||(m=r.createElement("meta"),m.setAttribute("name","viewport"),r.head.appendChild(m)),m.setAttribute("content","width=device-width,user-scalable=no,initial-scale="+u+",maximum-scale="+u+",minimum-scale="+u+",viewport-fit=cover"),r.documentElement.style.fontSize=a/2*s*n+"px"},e.exports=t["default"]}]);  
+// var currentScreenW = window.screen.availWidth || 375
+var fontscale = 1
+/*if(currentScreenW < 375 ) {
+	fontscale = currentScreenW/375
+}*/
+flex(100, fontscale);
+</script>
+</script>
+<body onload="load();">
+<style>.doctorpic-clip{display:-webkit-box;display:-webkit-flex;display:flex;-webkit-box-align:center;-webkit-align-items:center;align-items:center;background-size:100% auto;background-position:50%;width:100%;color:#fff}.times_warp{display:inline-block;width:1.8rem}.picVerification{width:2.5rem;height:1.2rem}.kd-row_center{display:-webkit-box;display:-webkit-flex;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-webkit-flex-direction:row;flex-direction:row;-webkit-box-pack:center;-webkit-justify-content:center;justify-content:center}</style>
+<!-- 导入verify插件css文件 -->
+<!-- <link inline rel="stylesheet" href="../../../../js/verify/css/verify.min.css"> -->
+<!-- 获取挂号诊疗费的名称 -->
+
+<!-- 获取挂号挂号费的名称，-1则不显示该项，对应的金额也不显示 -->
+
+<!-- 我的信息显示的卡号类型 -->
+
+<!-- 优惠接口费用显示描述【正数时候】 -->
+
+<!-- 优惠接口费用显示描述【负数时候】 -->
+
+<!-- 获取后台图片验证码开关   Jeffy flag -->
+
+<!-- 是否开通医保在线结算【true：开通】 -->
+
+<!-- 是否为一卡通模式 -->
+
+<!-- 导入微信、支付宝我的社保卡地址jsp -->
+
+<!-- 判断用户什么类型 ,获取微信和支付宝医保支付社保卡地址-->
+
+	
+		
+		<!-- 判断医院是否开通了允许用户切换支付方式,默认医保 -->
+		
+	
+	
+
+<!-- 是否启用预约审核模式 -->
+
+<!-- 是否需要填写病情内容等内容 -->
+
+<!-- 资料上传服务的类型 -->
+
+<!-- 是否开通医疗公益活动 false -->
+
+<!-- 是否开通挂号排队 -->
+
+<!-- 锁号前是否需要校验身份证信息 -->
+
+
+<style>
+@supports (bottom: env(safe-area-inset-bottom)) {
+	.kdui_wrapper__bottom_lg  {
+	  margin-bottom: env(safe-area-inset-bottom);
+	}
+	.kdui-btn__warp_fixed {
+		bottom: env(safe-area-inset-bottom) !important;
+	}
+}
+</style>
+<div class="kdui_wrapper kdui_wrapper__bottom_lg vconsole_entry" id="wrapper">
+<div class="kdui_scroller" id="scroller">
+<!-- 医生介绍开始 -->
+<div class="doctorpic-clip" data-verification="false" style="background-image:linear-gradient(150deg,#597ef7,#1890ff),url('//images.mhealth100.com/images/doctorpic/00363/594aae0bb4a41fef6e053c980948a1f6.png'),url('/ip-pat-web/images/v5/doctor/pic_dc.png');">
+	<div class="kdui-cell kdui-cell_second kdui-cell_autoh">
+		<div class="kdui-cell__hd">
+			<div class="kdui-icon_xl kdui-icon_cicle kdui-pv_xs" style="background-image:url('//images.mhealth100.com/images/doctorpic/00363/594aae0bb4a41fef6e053c980948a1f6.png'),url('/ip-pat-web/images/v5/doctor/pic_dc.png');"></div>
+		</div>
+		<div class="kdui-cell__bd">
+			马峰副教授
+			<div class="kdui-text_sm" style="">副教授 | 肾脏内科门诊</div>
+		</div>
+	</div>
+</div>
+<!-- 医生介绍结束 -->
+<!-- 挂号信息开始 -->
+<div class="kdui-cells kdui-cells_checkbox kdui-mt_sm">
+	<div class="kdui-cell">
+		<div class="kdui-cell__bd">肾脏内科门诊</div>
+		
+		<div class="kdui-cell__ft">
+			
+			
+				2019-06-16 (星期日) 下午
+			
+		</div>
+	</div>
+	<!-- 判断是否需要选择挂号类型 -->
+	
+	
+		<div class="kdui-cell">
+			
+				<div class="kdui-cell__bd" id="treatfeeName_div">诊查费</div>
+				<div class="kdui-cell__ft"><span id="treatfee_div" class="kdui-text_blue">12.0</span>&nbsp;元</div>
+			
+			
+			
+		</div>
+	
+	
+		
+			<div data-binding-id="E315B8A4FFFE442AB584BF94085CF732" data-dept-name="肾脏内科门诊" data-pat-name="冉德峰" data-healthcard-no="1800600101" data-pat-id="1800600101" data-pat-idno="37292219890701411X" data-guardian-id-card-no="" data-phone-no="15000628962" id="E315B8A4FFFE442AB584BF94085CF732" class="kdui-cell">
+				<div class="kdui-cell__bd">就诊人</div>
+				<div class="kdui-cell__ft">冉德峰</div>
+			</div>
+		
+	
+	<!-- 就诊人【多个】 -->
+	
+	<!-- 服务对象开始 -->
+	<!-- 服务对象【没有】 -->
+	<div id="_defaultyhId">
+		
+			
+				<div class="kdui-cell kdui-border_t">
+					<div class="kdui-cell__bd">普通</div>
+					<div class="kdui-cell__ft">
+						<!-- 判断优惠金额是不是包含就诊卡【预交金模式】，包含就不显示“优惠” -->
+						优惠
+						<span class="kdui-text_blue">
+          	0.0
+          	
+          </span>元
+					</div>
+				</div>
+			
+			<!-- 默认隐藏，动态加载 -->
+			<div id="hideeSvObject" class="kdui-cell kdui-border_t kdui-hide">
+				<div class="kdui-cell__bd" id="_svObject"></div>
+				<div class="kdui-cell__ft" id="_svObjectFee"></div>
+			</div>
+		
+	</div>
+	<!-- 存在服务对象 -->
+	<div id="_defaultObjectId" class="kdui-hide">
+		<input type="checkbox" class="kdui-check js_kdui-check__parent" id="current_svObject">
+		<label class="kdui-check__label arrow-default_top" for="current_svObject">
+			<div class="kdui-cell">
+				<div class="kdui-cell__bd" id="list_svObject">普通</div>
+  			<div class="kdui-cell__ft">
+  				<span id="list_svObjectFee">请选择服务对象</span>
+  				<span class="kdui-icon__arrow_top kdui-ml_sm kdui-mr_xs"></span>
+  			</div>
+  		</div>
+	  </label>
+		<div class="kdui-cells kdui-cells_radio js_kdui-check__childs" id="divObject">
+			
+		</div>
+		<a class="kdui-cell_access" onclick="choise_time.showDiseaseList()" id="disease_li" href="javascript:;" style="display:none;">
+			<div class="kdui-cell">
+				<div class="kdui-cell__bd">病种</div>
+				<div class="kdui-cell__ft">请选择病种</div>
+			</div>
+		</a>
+	</div>
+	<!-- 服务对象结束 -->
+	<!-- 如果是博得专家预约模式的话增加预期就诊日期选择和预约操作选择 -->
+	
+</div>
+<!-- 挂号信息结束-->
+
+<!-- 分时信息开始 -->
+
+	
+<div class="kdui-cells kdui-cells_radio kdui-mt_sm">
+	
+		
+		
+			<label class="kdui-check__label" for="times0">
+	  			<div class="kdui-cell">
+	    			<div class="kdui-cell__bd">
+	    				<span>13:00&nbsp;-&nbsp;14:00</span>
+	    				<span class="kdui-ml_sm">
+	    					
+	    						
+	    						余号&nbsp;<font class="kdui-text_blue">17</font>&nbsp;个
+	    					
+	    				</span>
+	    			</div>
+	    			<div class="kdui-cell__ft kdui-flex__item_center">
+	    				<input data-start-time="13:00" data-end-time="14:00" data-reg-leave-count="17" data-schedule-id="" data-queue-sn="7c21834aae17dccdae053219e948a530" type="radio" name="times_radio" class="kdui-check" id="times0">
+	    				<i class="icon-radio_normal"></i>
+	    			</div>
+	  			</div>
+	  		</label>
+		
+	
+		
+		
+			<label class="kdui-check__label" for="times1">
+	  			<div class="kdui-cell">
+	    			<div class="kdui-cell__bd">
+	    				<span>14:00&nbsp;-&nbsp;15:00</span>
+	    				<span class="kdui-ml_sm">
+	    					
+	    						
+	    						余号&nbsp;<font class="kdui-text_blue">11</font>&nbsp;个
+	    					
+	    				</span>
+	    			</div>
+	    			<div class="kdui-cell__ft kdui-flex__item_center">
+	    				<input data-start-time="14:00" data-end-time="15:00" data-reg-leave-count="11" data-schedule-id="" data-queue-sn="7c21834aae17dccdae053219e948a530" type="radio" name="times_radio" class="kdui-check" id="times1">
+	    				<i class="icon-radio_normal"></i>
+	    			</div>
+	  			</div>
+	  		</label>
+		
+	
+</div>
+
+<!-- 分时信息结束-->
+
+<!-- 预约病情编写 -->
+
+<!-- 预约病情结束 -->
+
+<!-- 引入医疗公益服务jsp -->
+
+
+</div>
+</div>
+<script>
+	var myScroll;
+	function loadIscroll() {
+		myScroll = new IScroll('#wrapper', {
+			preventDefault: false,
+			scrollbars: true,
+			mouseWheel: true,
+			fadeScrollbars: true/*,
+			probeType: 3*/
+		}); 
+		document.getElementById("wrapper").addEventListener('touchmove', function(event) { event.preventDefault() }, false)
+		if(typeof loadIscrollCb != "undefined") {
+			loadIscrollCb();
+		}
+	}
+</script>
+<div class="kdui-btn__warp kdui-btn__warp_fixed">
+	<a href="javascript:;" onclick="addOrder();" class="kdui-btn kdui-btn__default ">确定</a>
+</div>
+
+<div class="js_kdui-dialog" style="display: none;height: 100%;">
+	<div class="kdui-mask kdui-mask__dialog"></div>
+	<div class="kdui-dialog">
+		<div class="kdui-dialog__hd"><strong class="kdui-dialog__title">温馨提示</strong></div>
+		<div class="kdui-dialog__bd">这个里面是弹窗的内容</div>
+		<div class="kdui-dialog__ft">
+			<a href="javascript:;" class="kdui-dialog__btn kdui-dialog__btn_default">取消</a>
+			<a href="javascript:;" class="kdui-dialog__btn kdui-dialog__btn_primary">确认</a>
+		</div>
+	</div>
+</div>
+
+<div id="kdui-actionsheet__warp" style="height: 100%;">
+		<div class="kdui-mask" style="display: none;"></div>
+		<div class="kdui-actionsheet">
+			<div class="kdui-actionsheet__title">请看下面的内容</div>
+			<div class="kdui-actionsheet__menu">
+				<!-- js动态注入 -->
+			</div>
+			<div class="kdui-actionsheet__action">
+				<div class="kdui-actionsheet__cell">取消</div>
+			</div>
+		</div>
+	</div>
+<!-- 医保补入身份证弹出框需要的内容 -->
+<div id="inputMedicareDialogBody" class="kdui-hide">
+	<form class="fixMedicareUserInfoForm">
+	<input type="hidden" name="bingdingId" class="fixMedicareBingdingId" value=""/>
+	<div class="kdui-cells">
+		<div class="kdui-cell kdui-cell_disabled" style="margin-left: 0;padding-right: 0;">
+			<div class="kdui-cell__hd">
+        <label class="kdui-label">姓名</label>
+      </div>
+      <div class="kdui-cell__bd">
+        <input class="kdui-input fixMedicarePatName" name="patName" value="" readonly>
+      </div>
+		</div>
+		<div class="kdui-cell" style="margin-left: 0;padding-right: 0;">
+			<div class="kdui-cell__hd">
+        <label class="kdui-label">身份证号码</label>
+      </div>
+      <div class="kdui-cell__bd">
+        <input class="kdui-input fixMedicarePatIdcardNo" name="patIdCardNo" placeholder="请输入身份证号码">
+      </div>
+		</div>
+	</div>
+	</form>
+</div>
+
+<!-- 医保补入监护人身份证弹出框需要的内容  -->
+<div id="inputMedicareParentDialogBody" class="kdui-hide">
+	<form class="fixMedicareParentInfoForm">
+	 <div style="padding: .2rem 0rem">
+	   <p>少儿医保线上结算需要补录监护人信息，请填写医保登记时绑定的监护人。</p>
+	 </div>	
+		
+	<input type="hidden" name="bingdingId" class="fixMedicareBingdingId" value=""/>
+	<div class="kdui-cells">
+		<div class="kdui-cell" style="margin-left: 0;padding-right: 0;">
+			<div class="kdui-cell__hd">
+        <label class="kdui-label">监护人姓名</label>
+      </div>
+      <div class="kdui-cell__bd">
+        <input class="kdui-input fixMedicarePatName" name="guardianName" value="" placeholder="请输入监护人姓名">
+      </div>
+		</div>
+		<div class="kdui-cell" style="margin-left: 0;padding-right: 0;">
+			<div class="kdui-cell__hd">
+        <label class="kdui-label">监护人身份证号码</label>
+      </div>
+      <div class="kdui-cell__bd">
+        <input class="kdui-input fixMedicarePatIdcardNo" name="guardianIdCardNo" placeholder="请输入监护人身份证号码">
+      </div>
+		</div>
+	</div>
+	</form>
+</div>
+
+<!-- 医保补入身份证弹出框需要的内容 本人及监护人都要 -->
+<div id="inputMedicareAllDialogBody" class="kdui-hide">
+	<form class="fixMedicareAllInfoForm">
+	 <div style="padding: .2rem 0rem">
+	   <p>少儿医保线上结算需要补录监护人信息，请填写医保登记时绑定的监护人。</p>
+	 </div>		
+	<input type="hidden" name="bingdingId" class="fixMedicareBingdingId" value=""/>
+	<div class="kdui-cells">
+		
+		<div class="kdui-cell" style="margin-left: 0;padding-right: 0;">
+			<div class="kdui-cell__hd">
+				<label class="kdui-label">就诊人身份证</label>
+			</div>
+			<div class="kdui-cell__bd">
+				<input class="kdui-input fixMedicareSelfPatIdcardNo" name="patIdCardNo" value="" placeholder="请输入就诊人身份证">
+			</div>
+		</div>
+		
+		<div class="kdui-cell" style="margin-left: 0;padding-right: 0;">
+		<div class="kdui-cell__hd">
+			<label class="kdui-label">监护人姓名</label>
+		</div>
+		<div class="kdui-cell__bd">
+			<input class="kdui-input fixMedicarePatName" name="guardianName" value="" placeholder="请输入监护人姓名">
+		</div>
+		</div>		
+		
+		<div class="kdui-cell" style="margin-left: 0;padding-right: 0;">
+			<div class="kdui-cell__hd">
+				<label class="kdui-label">监护人身份证号码</label>
+			</div>
+			<div class="kdui-cell__bd">
+				<input class="kdui-input fixMedicarePatIdcardNo" name="guardianIdCardNo" placeholder="请输入监护人身份证号码">
+			</div>
+		</div>
+	</div>
+	</form>
+</div>
+
+<div id="inputPicVerification" class="kdui-hide">
+   <div class="kdui-cells">
+    <div class="kd-row_center">
+    <img id="validateCodeImg" title="换一张" onclick="choise_time.refreshValidateCode(this)" src="randomValidateCodeAction!getValidateCode.do?20181024" class="picVerification">
+	</div>
+	<div class="kdui-cell" style="margin-left: 0;padding-right: 0;">
+	   <div class="kdui-cell__hd">
+        <label class="kdui-label">验证码</label>
+      </div>
+      <div class="kdui-cell__bd">
+        <input class="kdui-input fixMedicarePatIdcardNo" name="picNum" id="verificationPic" placeholder="请输入图片验证码">
+      </div>
+		</div>
+	</div>
+</div>
+
+
+
+<!-- 6岁以下儿童暂存费用 -->
+<input type="hidden" id="originRegFee" value="0.0" />
+<input type="hidden" id="originTreatFee" value="12.0" />
+
+<!-- 判断是否引入验证jsp -->
+
+
+<form name="saveform" id="saveform" method="post">
+	<input type="hidden" name="openId" id="openId0" value="" />
+	<input type="hidden" name="hospitalId" id="hospitalId0" value="100363001" />
+	<input type="hidden" name="fee" id="fee0" value="0.0" />
+	<input type="hidden" name="treatfee" id="treatfee0" value="12.0" />
+	<input type="hidden" name="yhFee" id="yhFee0" value="0.0" />
+	<input type="hidden" name="deptId" id="deptId0" value="594a6ab55d756da01e053c980948a20f" />
+	<input type="hidden" name="doctorId" id="doctorId0" value="594aae0bb4a41fef6e053c980948a1f6" />
+	<input type="hidden" name="regDate" id="regDate0" value="2019-06-16" />
+	<input type="hidden" name="timeFlag" id="timeFlag0" value="2" />
+	<input type="hidden" name="shiftName" id="shiftName0" value="下午" />
+	<input type="hidden" name="startTime" id="startTime0" value="13:00" />
+	<input type="hidden" name="endTime" id="endTime0" value="14:00" />
+	<input type="hidden" name="patientId" id="patientId0" value="1800600101" />
+	<input type="hidden" name="doctorName" id="doctorName0" value="马峰副教授" />
+	<input type="hidden" name="title" id="title0" value="副教授" />
+	<input type="hidden" name="desc" id="desc0" value="" />
+	<input type="hidden" name="patName" id="patName0" value="冉德峰" />
+	<input type="hidden" name="heathCardNo" id="heathCardNo0" value="1800600101"/>
+	<input type="hidden" name="deptName" id="deptName0" value="肾脏内科门诊" />
+	<input type="hidden" name="hospitalName" id="hospitalName0" value="西京医院" />
+	<input type="hidden" name="svObjectId" id="svObjectId" value="">
+	<input type="hidden" name="svObjectName" id="svObjectName" value="普通">
+	<input type="hidden" name="scheduleId" id="scheduleId0" value="7c21834aae17dccdae053219e948a530" />
+	<input type="hidden" name="queueSn" id="queueSn0" value="7c21834aae17dccdae053219e948a530" />
+	<!-- V3接口新增入参 -->
+	<input type="hidden" name="doctorLevelCode" id="doctorLevelCode0" value="6101000001000632" />
+	<input type="hidden" name="clinicUnitId" id="clinicUnitId0" value="594a6ab55d756da01e053c980948a20f" />
+	<input type="hidden" name="idCardNo" id="idCardNo0" value="37292219890701411X" />
+	<input type="hidden" id="guardianIdCardNo0" value="" />
+	<input type="hidden" name="phone" id="phone0" value="15000628962" />
+
+	<input type="hidden" name="medicareSettleLogId" id="medicareSettleLogId0" value="" />
+	<input type="hidden" name="cashFee" id="cashFee" value="" />
+	<input type="hidden" name="insuranFee" id="insuranFee" value="" />
+
+	<input type="hidden" name="affiliatedHospital" id="affiliatedHospital" value="" />
+	<input type="hidden" name="roomAddress" id="deptAddress" value="" />
+	<input type="hidden" name="remark" id="remark" value="" />
+	<input type="hidden" name="diseaseId" id="diseaseId" value="" />
+	<input type="hidden" name="diseaseName" id="diseaseName" value="" />
+	<!-- 用户选择的挂号类型ID -->
+	<input type="hidden" name="registerTypeId" id="registerTypeId"/>
+	<!-- 记录是否需要填验证码 -->
+	<input type="hidden" name="validateCode" id="picVerification" />
+	<!-- 记录当前选中用户的bindingId -->
+	<input type="hidden" name="bindingId" id="bindingId0" value="E315B8A4FFFE442AB584BF94085CF732"/>
+	
+	<!-- 如果是博得专家预约模式的话增加预期就诊日期选择和预约操作选择 -->
+	
+	
+	
+	
+	<!-- 如果是开通了保险业务的医院，需要增加停诊线和意外险两个参数 -->
+	
+
+	<!--挂号排队要提交的参数-->
+	
+		<input type="hidden" name="regLeaveCount" id="regLeaveCount0" value="">
+		<input type="hidden" name="tenantId" id="tenantId" value="00363" />
+	
+	<!-- 签名防串改金额 -->
+	<input type="hidden" name="addOrderSign" id="addOrderSign" value="03487562A48EBAE12021973B030C5817" />
+
+	<!-- 东莞妇幼医保新增参数 -->
+	<input type="hidden" name="medicalBankCardNo">
+	<input type="hidden" name="medicalCardNo">
+	
+</form>
+<!-- 记录当前选择的服务对象是否需要选病种,默认不需要 -->
+<input type="hidden" id="hasDisease" value="0" />
+<input type="hidden" id="actionType" value="wxInfo"/>
+<input type="hidden" name="sessionSubCards" id="sessionSubCards" value="" />
+<!-- android记录当前选择的时间段 -->
+<input type="hidden" id="selectedTimesIndex" value="">
+<!-- android记录当前选择的就诊人 -->
+<input type="hidden" id="selectedCardIndex" value="">
+<!-- android记录当前选择的服务对象 -->
+<input type="hidden" id="selectedObjectIndex" value="">
+<!-- 记录当前医院是否开通了保险功能 -->
+<input type="hidden" id="function_medicalPublicWelfare" value="false">
+<!-- 记录当前用户是否选择了领取保险 -->
+<input type="hidden" id="cardIsChoiceTakeMedical" value="0">
+<!-- 导入aes加密插件 -->
+<!-- <link href="/ip-pat-web/js/crypto-js/crypto-js.min.js?v=01d72683e7" rel="preload" as="script"></link> -->
+
+<script>"use strict";function _asyncToGenerator(e){return function(){var a=e.apply(this,arguments);return new Promise(function(e,t){function i(n,d){try{var o=a[n](d),s=o.value}catch(e){return void t(e)}if(!o.done)return Promise.resolve(s).then(function(e){i("next",e)},function(e){i("throw",e)});e(s)}return i("next")})}}var _typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},_slicedToArray=function(){function e(e,a){var t=[],i=!0,n=!1,d=void 0;try{for(var o,s=e[Symbol.iterator]();!(i=(o=s.next()).done)&&(t.push(o.value),!a||t.length!==a);i=!0);}catch(e){n=!0,d=e}finally{try{!i&&s.return&&s.return()}finally{if(n)throw d}}return t}return function(a,t){if(Array.isArray(a))return a;if(Symbol.iterator in Object(a))return e(a,t);throw new TypeError("Invalid attempt to destructure non-iterable instance")}}(),choise_time=function(){function _refreshSessionSubCards(e){var a=$("#sessionSubCards").val();a=a+e+",",$("#sessionSubCards").val(a)}function _ajaxExtendFee(params){function __changePatFee(e,a){var t=e[0].yhFee;if(Util.checkNull(t)&&(t=0),$("#yhFee0").val(t),$("#cashFee").val(e[0].cashFee),$("#insuranFee").val(e[0].insuranFee),$("#medicareSettleLogId0").val(e[0].medicareSettleLogId),a=a||e[0].svObjectId,console.log("__changePatFee--\x3esvObjectId:"+a),Util.checkNull(a))if(0==t)$("#hideeSvObject").addClass("kdui-hide");else if($("#_defaultObjectId").hasClass("kdui-hide")){$("#hideeSvObject").removeClass("kdui-hide"),$("#_svObject").html(e[0].svObject);-1!=e[0].svObject.indexOf("就诊卡")&&"",$("#_svObjectFee").html("优惠&nbsp;<span class='kdui-text_blue'>"+t+"</span>&nbsp;元"),t<0&&("",$("#_svObjectFee").html("&nbsp;<span class='kdui-text_blue'>"+Math.abs(t)+"</span>&nbsp;元"))}else $("#_svObject,#list_svObject").html(e[0].svObject),t<0?$("#_svObjectFee,#list_svObjectFee").html("&nbsp;<span class='kdui-text_blue'>"+Math.abs(t)+"</span>&nbsp;元"):$("#_svObjectFee,#list_svObjectFee").html("优惠&nbsp;<span class='kdui-text_blue'>"+t+"</span>&nbsp;元"),$("#hideeSvObject").hasClass("kdui-hide")||$("#hideeSvObject").addClass("kdui-hide");else $("#hideeSvObject").removeClass("kdui-hide"),$("#svObjectId").val(a),$("#_svObject,#list_svObject").html(Util.checkNull(e[0].svObject)?$("#divObject input:checked").data("svObject"):e[0].svObject),t<0?$("#_svObjectFee,#list_svObjectFee").html("&nbsp;<span class='kdui-text_blue'>"+Math.abs(t)+"</span>&nbsp;元"):$("#_svObjectFee,#list_svObjectFee").html("优惠&nbsp;<span class='kdui-text_blue'>"+t+"</span>&nbsp;元")}function __changeObjectList(e){e.length>0&&(isSelectObject=!0,$("#_defaultObjectId div#divObject").html(e.map(function(e,a){return'\n            \t<label class="kdui-check__label" for="svObject'+a+'">\n\t  \t\t\t\t\t\t<div class="kdui-cell kdui-border_t">\n\t    \t\t\t\t\t\t<div class="kdui-cell__hd kdui-flex__item_center">\n\t    \t\t\t\t\t\t\t<input data-sv-object-id="'+e.svObjectId+'" data-sv-object="'+e.svObject+'" data-is-insuran="'+e.isInsuran+'" data-has-disease="'+e.hasDisease+'" type="radio" name="svObject_radio" class="kdui-check" id="svObject'+a+'">\n\t    \t\t\t\t\t\t\t<i class="icon-radio_normal"></i>\n\t    \t\t\t\t\t\t</div>\n\t    \t\t\t\t\t\t<div class="kdui-cell__bd">\n\t    \t\t\t\t\t\t\t'+e.svObjectId+'\n\t    \t\t\t\t\t\t</div>\n\t    \t\t\t\t\t\t<div class="kdui-cell__ft">\n\t    \t\t\t\t\t\t\t'+e.svObject+"\n\t    \t\t\t\t\t\t</div>\n\t  \t\t\t\t\t\t</div>\n\t  \t\t\t\t\t</label>\n            "}).join("")),$("#_defaultObjectId").removeClass("kdui-hide"),$("#svObjectId").val(""),console.log($("#current_svObject").prop("checked")),$("#current_svObject").prop("checked")&&$("#current_svObject").click(),_initChoiseSvObjectEvent())}var callBack=arguments.length>1&&void 0!==arguments[1]?arguments[1]:function(){},failCb=arguments.length>2&&void 0!==arguments[2]?arguments[2]:function(){},param={hospitalId:$("#hospitalId0").val(),deptId:$("#deptId0").val(),doctorId:$("#doctorId0").val(),regDate:$("#regDate0").val(),timeFlag:$("#timeFlag0").val(),fee:"0.0",treatfee:"12.0",scheduleId:$("#scheduleId0").val(),registerTypeId:$("#registerTypeId").val(),addOrderSign:$("#addOrderSign").val()};params=Object.assign({},params,param),ui.showLoading("加载中..."),$.ajax({url:"wxInfo!findRegistrationFee.do",data:params,type:"post",cache:!1,dataType:"json",success:function success(data){ui.hideLoading();var patData=eval(data);if(_getYhFeeSuccessFlag="0"===patData[0].resultCode,!Util.checkNull(patData[0].addOrderSign)&&$("#addOrderSign").val(patData[0].addOrderSign),!Util.checkNull(patData[0].resultCode)&&0!=patData[0].resultCode)return hideLoading(),ui.showTip(patData[0].resultDesc,3e3),void($.isFunction(failCb)&&failCb.call(this));if(patData[0].fee&&!Util.checkNull(patData[0].fee)||patData[0].treatfee&&!Util.checkNull(patData[0].treatfee)){var _reg=patData[0].fee&&!Util.checkNull(patData[0].fee)?patData[0].fee:"0.0",_treat=patData[0].treatfee&&!Util.checkNull(patData[0].treatfee)?patData[0].treatfee:"0.0";$("#regfee_div").html(_reg),$("#treatfee_div").html(_treat),$("#fee0").val(_reg),$("#treatfee0").val(_treat)}else $("#fee0").val($("#originRegFee").val()),$("#treatfee0").val($("#originTreatFee").val()),$("#regfee_div").html($("#originRegFee").val()),$("#treatfee_div").html($("#originTreatFee").val());__changePatFee(patData,params.isRegisterType?"":params.svObjectId),void 0===patData[0].svcObjectList||params.isRegisterType||__changeObjectList(patData[0].svcObjectList),$.isFunction(callBack)&&callBack.call(this)},error:function(){ui.hideLoading(),ui.showTip("系统异常，请稍后再试"),$.isFunction(failCb)&&failCb.call(this)}})}function _initTimes(){$("input[name='times_radio']").each(function(e,a){0===e&&($(a).prop("checked",!0),$("#regLeaveCount0").val($(a).data("regLeaveCount"))),$(a).on("change",function(){$(this).prop("checked")&&($("#startTime0").val($(this).data("startTime")),$("#endTime0").val($(this).data("endTime")),Util.checkNull($(this).data("scheduleId"))||$("#scheduleId0").val($(this).data("scheduleId")),Util.checkNull($(this).data("regLeaveCount"))||$("#regLeaveCount0").val($(this).data("regLeaveCount")),$("#queueSn0").val($(this).data("queueSn")))})})}function _initChoiseRegisterTypeEvent(){var e=function(e){$("#registerTypeId").val(e.data("registerTypeId")),_ajaxExtendFee({isRegisterType:!0,svObjectId:$("#svObjectId").val()},function(){$("#selectedRegisterTypeName").html(e.data("registerTypeName")),$("#current_registerType").click()},function(){$("#registerTypeId").val(""),e.prop("checked",!1)})};$("#current_registerType").prop("checked",!1),$("input[name='registerType_radio']").each(function(a,t){$(t).prop("checked",!1),$(t).on("change",function(){$(this).prop("checked")&&e($(this))})})}function _initChoiseCardEvent(){function e(e){var a={patName:e.data("patName"),patientId:e.data("patId"),heathCardNo:e.data("healthcardNo"),patIdCardNo:e.data("patIdno"),phoneNo:e.data("phoneNo"),commonCard:e.data("patCommoncard"),bindingId:e.data("bindingId"),objFlag:!0};Util.checkNull(a.patName)||($("span#patname").html(a.patName),choise_time.inspectSyncSubTenantCard(a.heathCardNo)?choise_time.getRegionSelectUserBindCard(a,function(a){a?$("#current_card").click():($("#heathCardNo0").val(""),e.prop("checked",!1))}):_ajaxExtendFee(a,function(){$("#current_card").click(),$("span#patname").html(a.patName),$("#patientId0 ").val(a.patientId),$("#heathCardNo0").val(a.heathCardNo),$("#patName0").val(a.patName),$("#idCardNo0").val(a.patIdCardNo),$("#phone0").val(a.phoneNo)},function(){$("#heathCardNo0").val(""),e.prop("checked",!1)}))}function a(e){var a={patName:e.data("patName"),patientId:e.data("patId"),heathCardNo:e.data("healthcardNo"),patIdCardNo:e.data("patIdno"),phoneNo:e.data("phoneNo"),bindingId:e.data("bindingId"),deptName:e.data("deptName"),objFlag:!0};Util.checkNull(a.patName)||_ajaxExtendFee(a,function(){$("#current_card").click(),$("span#patname").html(a.patName),$("#patientId0 ").val(a.patientId),$("#heathCardNo0").val(a.heathCardNo),$("#patName0").val(a.patName),$("#idCardNo0").val(a.patIdCardNo),$("#guardianIdCardNo0").val(e.data("guardianIdCardNo")),$("#phone0").val(a.phoneNo),$("#bindingId0").val(a.bindingId),"true"==$("#function_medicalPublicWelfare").val()&&ad_medical_public.checkStatus(a.heathCardNo,a.patIdCardNo,a.phoneNo,a.deptName)},function(){$("#heathCardNo0").val(""),e.prop("checked",!1)})}$("#current_card").prop("checked",!1),$("input[name='card_radio']").each(function(t,i){$(i).prop("checked",!1),$(i).on("change",function(){$(this).prop("checked")&&(isRegion?e($(this)):a($(this)))})})}function _initChoiseSvObjectEvent(){function __choiseSvcObject(obj){function ___setSvcObject(e){if("1"==e.data("hasDisease")){$("#current_svObject").click(),$("#hasDisease").val("1"),$("#disease_li").show(),e.data("isResetDisease")&&($("#disease_li div div:nth(1)").html("请选择病种"),$("#diseaseId").val(""),$("#diseaseName").val(""),$("#svObjectId").val(e.data("svObjectId")),$("#_svObjectFee,#list_svObjectFee").html("&nbsp;<span class='kdui-text_blue'>-</span>&nbsp;元"),$("#_svObject,#list_svObject").html(e.data("svObject")),$("#svObjectName").val(e.data("svObject"))),showLoading("加载中...");var a={hospitalId:$("#hospitalId0").val(),patientId:$("#patientId0").val(),heathCardNo:$("#heathCardNo0").val(),idCardNo:$("#idCardNo0").val(),svObjectId:e.data("svObjectId")},t={method:"post",ajaxData:a,ajaxUrl:"wxInfo!ajaxGetDiseaseList.do",successCb:function(a){var t=a.datas;if(null==t||0==t.length)ui.showTip("没有获取到病种数据",2e3);else{var i=[],n=!0,d=!1,o=void 0;try{for(var s,r=t.entries()[Symbol.iterator]();!(n=(s=r.next()).done);n=!0)!function(){var a=_slicedToArray(s.value,2),t=(a[0],a[1]);i.push({menuTitle:t.diseaseName,menuAction:function(){_ajaxExtendFee({patName:$("#patName0").val(),heathCardNo:$("#heathCardNo0").val(),patientId:$("#patientId0").val(),patIdCardNo:$("#idCardNo0").val(),phoneNo:$("#phone0").val(),svObjectId:$("#svObjectId").val(),svcName:$("#svObjectName").val(),diseaseId:t.diseaseId,objFlag:!1},function(){$("#disease_li div div:nth(1)").html(t.diseaseName),$("#diseaseId").val(t.diseaseId),$("#diseaseName").val(t.diseaseName)},function(){e.prop("checked",!1),$("#diseaseId").val(""),$("#current_svObject").click()})}})}()}catch(e){d=!0,o=e}finally{try{!n&&r.return&&r.return()}finally{if(d)throw o}}var l={actionsheetTitle:"请选择病种",actionsheetMeuns:i};ui_actionsheet.init(l).show()}}};new AjaxApi(t).run()}else{$("#hasDisease").val("0"),$("#diseaseId").val(""),$("#diseaseName").val(""),$("#disease_li").hide();var i={svObjectId:e.data("svObjectId"),svObject:e.data("svObject"),objFlag:e.data("objFlag"),diseaseId:e.data("diseaseId"),patName:$("#patName0").val(),heathCardNo:$("#heathCardNo0").val(),patientId:$("#patientId0").val(),patIdCardNo:$("#idCardNo0").val(),phoneNo:$("#phone0").val()};_ajaxExtendFee(i,function(){$("#svObjectId").val(i.svObjectId),$("#svObjectName").val(i.svObject),$("#current_svObject").click()},function(){$("#svObjectId").val(""),e.prop("checked",!1)})}}var _ajaxFixUserInfo=function(e,a){var t=$(".kdui-dialog__bd form.fixMedicareUserInfoForm"),i=t.find("input.fixMedicarePatIdcardNo").val();if(Util.checkNull(i)||!Util.verifyIdCard(i))return void ui.showTip("请填写正确的身份证号码");var n={method:"post",resultDesc:"系统异常，请稍后再试",ajaxUrl:"wxMyInfo!ajaxVerifyUserIdCardNo.do",ajaxData:t.serialize(),loadingText:"保存中...",loadingType:"block",successCb:function(t){$("#"+a).data("patIdno",i),$("#idCardNo0").val(i),ui.showTip("保存成功",300),setTimeout(function(){e.hide(),__choiseSvcObject(obj)},300)},failCb:function(e){obj.prop("checked",!1),ui.showTip(e.resultDesc,2e3)}};new AjaxApi(n).run()},_ajaxFixParentInfo=function(e,a){var t=$(".kdui-dialog__bd form.fixMedicareParentInfoForm");console.log("test：1.0");var i=t.find("input.fixMedicarePatName").val();if(console.log(i),Util.checkNull(i))return void ui.showTip("请填写监护人姓名");var n=t.find("input.fixMedicarePatIdcardNo").val();if(console.log(n),Util.checkNull(n)||!Util.verifyIdCard(n))return void ui.showTip("请填写正确的身份证号码");var d={method:"post",resultDesc:"系统异常，请稍后再试",ajaxUrl:"wxInfo/wxMyInfo!ajaxCompleteUserGuardian.do",ajaxData:t.serialize(),loadingText:"保存中...",loadingType:"block",successCb:function(a){ui.showTip("保存成功",300),setTimeout(function(){e.hide(),__choiseSvcObject(obj)},300)},failCb:function(a){obj.prop("checked",!1),2==a.resultCode?(console.log("fail"),e.hide(),ui.showTip(a.resultDesc,2e3),setTimeout(function(){window.location.href=""},2e3)):ui.showTip(a.resultDesc,2e3)}};new AjaxApi(d).run()},_ajaxFixAllInfo=function(e,a){var t=$(".kdui-dialog__bd form.fixMedicareAllInfoForm");console.log("test：1.0");var i=t.find("input.fixMedicareSelfPatIdcardNo").val();if(Util.checkNull(i)||!Util.verifyIdCard(i))return void ui.showTip("请填写正确的就诊人身份证号码");var n=t.find("input.fixMedicarePatName").val();if(console.log(n),Util.checkNull(n))return void ui.showTip("请填写监护人姓名");var d=t.find("input.fixMedicarePatIdcardNo").val();if(console.log(d),Util.checkNull(d)||!Util.verifyIdCard(d))return void ui.showTip("请填写正确的监护人身份证号码");var o={method:"post",resultDesc:"系统异常，请稍后再试",ajaxUrl:"wxInfo/wxMyInfo!ajaxCompleteUserGuardian.do",ajaxData:t.serialize(),loadingText:"保存中...",loadingType:"block",successCb:function(t){$("#"+a).data("patIdno",i),$("#idCardNo0").val(i),ui.showTip("保存成功",300),setTimeout(function(){e.hide(),__choiseSvcObject(obj)},300)},failCb:function(a){obj.prop("checked",!1),2==a.resultCode?(console.log("fail"),e.hide(),ui.showTip(a.resultDesc,2e3),setTimeout(function(){window.location.href=""},2e3)):ui.showTip(a.resultDesc,2e3)}};new AjaxApi(o).run()},_fixedUserInfo=function(e){var a=$("#"+e).data("patName"),t={dialogBodyContent:$("#inputMedicareDialogBody").html(),dialogTitle:"完善就诊人信息",defaultBtnTile:"取消",primaryBtnTitle:"确定",triggeredIsClose:!1,primaryBtnCb:function(){_ajaxFixUserInfo(i,e)},defaultBtnCb:function(){i.hide(),obj.prop("checked",!1)}},i=ui_dialog.init(t);i.show(),$(".kdui-dialog").css("width","90%"),$(".fixMedicareBingdingId").val(e),$(".fixMedicarePatName").val(a)},_fixedParentInfo=function(e){var a={dialogBodyContent:$("#inputMedicareParentDialogBody").html(),dialogTitle:"少儿医保补录提醒",defaultBtnTile:"取消",primaryBtnTitle:"确定",triggeredIsClose:!1,primaryBtnCb:function(){console.log("不是这个方法吗"),_ajaxFixParentInfo(t,e)},defaultBtnCb:function(){t.hide(),obj.prop("checked",!1)}},t=ui_dialog.init(a);t.show(),$(".kdui-dialog").css("width","90%"),$(".fixMedicareBingdingId").val(e)},_fixedAllInfo=function(e){var a={dialogBodyContent:$("#inputMedicareAllDialogBody").html(),dialogTitle:"少儿医保补录提醒",defaultBtnTile:"取消",primaryBtnTitle:"确定",triggeredIsClose:!1,primaryBtnCb:function(){_ajaxFixAllInfo(t,e)},defaultBtnCb:function(){t.hide(),obj.prop("checked",!1)}},t=ui_dialog.init(a);t.show(),$(".kdui-dialog").css("width","90%"),$(".fixMedicareBingdingId").val(e)},canChoiseSvcObject=!0;console.log("__choiseSvcObject--\x3eonlineInsuran:"+onlineInsuran+",isInsuran:"+obj.data("isInsuran")),onlineInsuran&&1==obj.data("isInsuran")&&(console.log("__choiseSvcObject--\x3eignoreVerifyInsuran:"+obj.data("ignoreVerifyInsuran")),1!=obj.data("ignoreVerifyInsuran")&&(canChoiseSvcObject=!1,ui.showLoading("正在验证用户的医保信息,请稍后..."),$.ajax({url:"wxInfo!syncUserRealNameAndBindInstCard.do",data:{healthCardNo:$("#heathCardNo0").val(),childInsuranType:obj.data("svObjectId")},type:"post",cache:!1,dataType:"json",success:function success(data){var resultJson=eval(data);if(hideLoading(),0==resultJson.resultCode)ui.showTip("医保信息验证通过",2e3),obj.data("ignoreVerifyInsuran",!0),resultJson.redirectUrl?setTimeout(function(){window.location.href=resultJson.redirectUrl},300):($("#saveform [name=medicalBankCardNo]").val(resultJson.medicalBankCardNo),$("#saveform [name=medicalCardNo]").val(resultJson.medicalCardNo),__choiseSvcObject(obj));else if(2==resultJson.resultCode){ui.showTip(resultJson.resultDesc,3e3);var bindInsuranceCardChannel=resultJson.bindInsuranceCardChannel;"weixin"==bindInsuranceCardChannel?setTimeout(function(){window.location.href=""},2e3):"alipay"==bindInsuranceCardChannel?setTimeout(function(){window.location.href=""},2e3):(obj.prop("checked",!1),ui.showTip("系统繁忙,请稍候再试...",2e3))}else if(5==resultJson.resultCode)_fixedUserInfo($("#bindingId0").val());else if(7==resultJson.resultCode)_fixedParentInfo($("#bindingId0").val());else if(9==resultJson.resultCode)_fixedAllInfo($("#bindingId0").val());else{var tips=resultJson.resultDesc;Util.checkNull(tips)&&(tips="系统繁忙,请稍候再试..."),obj.prop("checked",!1),ui.showTip(tips,2e3)}},error:function(){hideLoading(),obj.prop("checked",!1),ui.showTip("用户医保信息验证异常",2e3)}}))),canChoiseSvcObject&&(Util.checkNull(obj.data("svObject"))||(obj.data("objFlag",!1),obj.data("isResetDisease",!0),___setSvcObject(obj)))}$("#current_svObject").prop("checked",!1),$("input[name='svObject_radio']").each(function(e,a){$(a).prop("checked",!1),$(a).on("change",function(){if(Util.checkNull($("#heathCardNo0").val()))return ui.showTip("请选择就诊人",1e3),void $(this).prop("checked",!1);$(this).prop("checked")&&__choiseSvcObject($(this))})})}function _handelWaiting(e){var a="<p>全院待处理排队："+e.datas.currentAllPos+"</p>\n    <p>所挂班别排队："+e.datas.currentPos+"</p>";e.datas&&(0===e.datas.regLeaveCount||e.datas.regLeaveCount>0)&&(a+="<p>预计剩余号量："+e.datas.regLeaveCount+"</p>");var t={};"0"==e.resultCode?t={dialogBodyContent:a,dialogTitle:"当前挂号人数过多需排队",defaultBtnTile:"取消排队",primaryBtnTitle:"查看排队",triggeredIsClose:!1,primaryBtnCb:function(){window.location.replace("asyncModeRegistration!toOrderInfo.do?healthCardNo="+$("#heathCardNo0").val()+"&queueOrderId="+e.datas.queueOrderId)},defaultBtnCb:function(){return choise_time.cancelWaiting(e.datas.queueOrderId,e.datas.queueId),i.hide(),!1}}:"5"==e.resultCode?t={dialogTitle:"您已在排队队列中",primaryBtnTitle:"确认",defaultBtnTile:"",dialogBodyContent:a}:"6"==e.resultCode&&(t={dialogTitle:"已达排队上限",primaryBtnTitle:"确认",defaultBtnTile:"",dialogBodyContent:"当前号源已达到排队上限，请稍后再试"});var i=ui_dialog.init(t);i.show(),$(".kdui-dialog").css("width","90%")}function _isWxMiniprogram(){var e=!1;return"undefined"!=typeof wx&&wx&&wx.miniProgram&&wx.miniProgram.getEnv&&wx.miniProgram.getEnv(function(a){e=a.miniprogram,console.log("miniprogram:"+e)}),e}var _toAddOrder=function(){var e=_asyncToGenerator(regeneratorRuntime.mark(function e(){var a,t,i,n,d,o,s,r,l,c,u,p,h;return regeneratorRuntime.wrap(function(e){for(;;)switch(e.prev=e.next){case 0:if(!_isSubmit||Util.isIos()){e.next=2;break}return e.abrupt("return");case 2:if(_isSubmit=!0,a=_isWxMiniprogram(),Util.isIos()&&!a||ui.showLoading(),t=_actionType+"!addOrder.do",$("#saveform").attr("action",t),a){e.next=11;break}$("#saveform").submit(),e.next=26;break;case 11:return t=_actionType+"!ajaxAddOrder.do",e.prev=12,e.next=15,fetchApi.post(t,$("#saveform").serialize());case 15:i=e.sent,n=i.resultCode,d=i.resultDesc,o=i.datas,"0"===n?(s=o.total_fee,r=o.orderId,l=o.body,c=o.redirectUrl,u="wxa30e65602d3b6a39",p="pages/index/index",h="payproxy?body="+l+"&total_fee="+s+"&appId="+u+"&path="+p+"&orderId="+r,console.log(h),Util.checkNull(c)?wx&&wx.miniProgram&&wx.miniProgram.navigateTo({url:h}):window.location.href=c):ui.showTip(d||"系统异常，请稍后再试"),e.next=23;break;case 20:e.prev=20,e.t0=e.catch(12),ui.showTip(e.t0);case 23:return e.prev=23,ui.hideLoading(),e.finish(23);case 26:case"end":return e.stop()}},e,this,[[12,20,23,26]])}));return function(){return e.apply(this,arguments)}}(),_isSubmit=!1,_actionType=$("#actionType").val(),_userInputedDiscriptionPosition=sessionStorage.getItem("userInputedDiscriptionPosition"),_getYhFeeSuccessFlag=!1;return{initPage:function(){_initTimes(),_initChoiseRegisterTypeEvent(),_initChoiseCardEvent(),_initChoiseSvObjectEvent(),Util.checkNull(_userInputedDiscriptionPosition)||($("#discription").val(_userInputedDiscriptionPosition),util_form.calcTextareaTextCounts($("#discription")[0]))},showDiseaseList:function(){ui_actionsheet.show()},tellRepeated:function(){var e={method:"post",ajaxData:$("#saveform").serialize(),ajaxUrl:"wxInfo!ajaxJudgeRegisterHistory.do",successCb:function(e){if("1"===e.datas.flag){var a={dialogBodyContent:"您已于"+e.datas.lastOrderTime+"挂当前医生，当前班次的号。是否确认需要重复挂号？",dialogTitle:"挂号提醒",defaultBtnTile:"取消",primaryBtnTitle:"继续挂号",triggeredIsClose:!1,primaryBtnCb:function(){_toAddOrder()},defaultBtnCb:function(){return t.hide(),"object"===("undefined"==typeof slideVerify?"undefined":_typeof(slideVerify))&&slideVerify.setVerifyFlag(),!1}},t=ui_dialog.init(a);t.show(),$(".kdui-dialog").css("width","90%")}else _toAddOrder()}};new AjaxApi(e).run()},inspectSyncSubTenantCard:function(e){var a=$("#sessionSubCards").val();return""==e||(!a||null==a||""==a||!(a.indexOf(e)>=0))},getRegionSelectUserBindCard:function getRegionSelectUserBindCard(params,callback){showLoading("正在同步绑卡信息");var isSuccess=!1;$.ajax({url:"wxInfo!getRegionSelectUserBindCard.do",data:{idCardNo:params.patIdCardNo,heathCardNo:params.heathCardNo,patName:params.patName,phone:params.phoneNo},type:"post",cache:!1,dataType:"json",success:function success(data){var result=eval(data),bindCard=result.data;if("0"!=result.resultCode)return isSuccess=!1,isRegion&&isCommonCard,ui.showTip("同步卡数据失败,请检查卡是否能用或稍后再试",3e3),!1;var heathCardNo=bindCard.heathCardNo,patientId=bindCard.patientId;seletedData.heathCardNo=bindCard.heathCardNo,seletedData.patientId=bindCard.patientId,seletedData.patName=bindCard.patName,seletedData.idCardNo=bindCard.patIdCardNo,seletedData.phone=bindCard.phoneNo,_ajaxExtendFee(params),isSuccess=!0,$("#"+params.bindingId).find("div.healthcard-no").html(bindCard.heathCardNo),$("#"+params.bindingId).data("healthcardNo",bindCard.heathCardNo),$("#patientId0 ").val(seletedData.patientId),$("#heathCardNo0").val(seletedData.heathCardNo),$("#patName0").val(seletedData.patName),$("#idCardNo0").val(seletedData.idCardNo),$("#phone0").val(seletedData.phone),_refreshSessionSubCards(seletedData.heathCardNo)},error:function(){ui.showTip("同步失败，请稍后重试",2e3)},complete:function(){hideLoading(),callback&&callback(isSuccess)}})},waitInBatch:function(){var e={method:"post",ajaxUrl:"queueManage!ajaxEntryAppointQueue.do",ajaxData:$("#saveform").serialize(),loadingText:"正在检测排队...",loadingType:"block",successCb:function(e){e&&e.resultCode&&"0"==e.resultCode&&e.datas?_handelWaiting(e):ui.showTip("挂号排队失败，请稍后再试！")},failCb:function(e){if(e&&e.resultCode)if("1"==e.resultCode||"2"==e.resultCode)choise_time.tellRepeated();else if("3"==e.resultCode||"4"==e.resultCode){var a="3"==e.resultCode?"达到挂号限制，无法继续挂号。":"您已有挂号在排队中，请等排队处理后再进行挂号。",t={dialogTitle:"3"==e.resultCode?"达到挂号限制":"挂号排队过多",primaryBtnTitle:"确认",defaultBtnTile:"",dialogBodyContent:Util.checkNull(e.resultDesc)?e.resultDesc:a},i=ui_dialog.init(t).show();i.show(),$(".kdui-dialog").css("width","90%")}else"5"==e.resultCode||"6"==e.resultCode?_handelWaiting(e):ui.showTip(e.resultDesc);else ui.showTip("挂号排队失败，请稍后再试！")}};new AjaxApi(e).run()},cancelWaiting:function(e,a){var t={method:"post",ajaxUrl:"queueManage!ajaxCancelAppointQueued.do",ajaxData:{queueOrderId:e,queueId:a,openId:$("#openId0").val(),tenantId:$("#tenantId").val()},loadingText:"正在取消排队...",loadingType:"block",successCb:function(e){e&&"0"==e.resultCode||ui.showTip(e.resultDesc)}};new AjaxApi(t).run()},fixInputIdCardNo:function(){var e=void 0,a=function(a,t){if(Util.checkNull(t))return void ui.showTip("请填写身份证号");if(!Util.verifyIdCard(t))return void ui.showTip("身份证号有误，请重新填写");var i={method:"post",resultDesc:"系统异常，请稍后再试",ajaxUrl:"wxMyInfo!ajaxCompleteUserIdCardNo.do",ajaxData:{bingdingId:a,idCardNo:t},loadingText:"保存中...",loadingType:"block",successCb:function(i){$("#"+a).data("patIdno",t),$("#idCardNo0").val(t),ui.showTip("保存成功",300),setTimeout(function(){e&&e.hide()},300)}};new AjaxApi(i).run()},t=$("#idCardNo0").val(),i=$("#bindingId0").val(),n='\n        <div class="kdui-cells">\n          <div class="kdui-cell kdui-cell_multi">\n            <div class="kdui-cell__bd">\n              <div class="kdui-text_secondary kdui-cell_multiln">我院已实行实名就医，请补录身份证号码后继续挂号</div>\n            </div>\n          </div>\n          <div class="kdui-cell" style="margin-left: 0;padding-right: 0;">\n            <div class="kdui-cell__hd">\n              <label class="kdui-label">身份证号码</label>\n            </div>\n            <div class="kdui-cell__bd">\n              <input id="fixInputIdCardNo" class="kdui-input" name="patIdCardNo" value="'+t+'" placeholder="请输入身份证号码">\n            </div>\n          </div>\n        </div>\n      ',d={dialogBodyContent:n,dialogTitle:"身份证补录提醒",defaultBtnTile:"取消",primaryBtnTitle:"确定",triggeredIsClose:!1,primaryBtnCb:function(){var e=$("#fixInputIdCardNo").val();a(i,e)},defaultBtnCb:function(){e&&e.hide()}};e=ui_dialog.init(d),e.show(),$(".kdui-dialog").css("width","90%")},showVerifyCodeDialog:function(){var e=void 0,a={dialogBodyContent:$("#inputPicVerification").html(),dialogTitle:"图片验证码填写",defaultBtnTile:"取消",primaryBtnTitle:"确定",triggeredIsClose:!1,primaryBtnCb:function(){if($("#picVerification").val($("#verificationPic").val()),!$("#picVerification").val())return void $("#verificationPic").focus();e&&e.hide(),addOrder()},defaultBtnCb:function(){e&&e.hide()}};e=ui_dialog.init(a),e.show(),$("#verificationPic").focus()},refreshValidateCode:function(e){e.src="randomValidateCodeAction!getValidateCode.do?"+Math.random()},returnGetYhFeeSuccessFlag:function(){return _getYhFeeSuccessFlag}}}();
+//# sourceMappingURL=choise_time.min.js.map
+</script>
+<!-- 导入verify插件js文件 -->
+<!-- <script inline src="../../../../js/verify/verify.min.js?v=44dfb83bf9"></script> -->
+<script> 
+	var seletedData={
+		patName:'冉德峰',
+		heathCardNo:'1800600101',
+		patientId:'1800600101',
+		idCardNo:'',
+		phone:''
+	};
+	//判断是否需要选择服务对象
+	var isSelectObject = false;
+	//是否开通在线医保结算
+	var onlineInsuran = false;
+	//是否为一卡通模式
+	var isCommonCard = false;
+	var isRegion = false;
+	//是否开通预约审核模式
+	var isAppointmentAudit = false;
+	// 是否开通填写病情内容等信息
+	var isDiseaseContent = false
+	//医保卡在线绑定状态
+	var bindInsuranceCardStatus = false;
+
+	function bodyOnload() {
+		var openId = $("#userOpenId").val();
+		var deptName = "肾脏内科门诊"
+		var sessionId = $("#userSessionId").val();
+		// 获取前一个页面上是否有deptName
+		var refererDeptName = sessionStorage.getItem('deptName_' + sessionId)
+		
+		util_form.checkboxSlideToggle()
+		util_form.checkboxSlideToggle('.js_kdui-check__parent-registerType', '.js_kdui-check__childs-registerType')
+		choise_time.initPage();
+
+		if(isSelectObject && onlineInsuran && bindInsuranceCardStatus) {
+			ui.showTip("医保卡绑定成功，请重新操作");
+		}
+		
+
+		//一卡通模式
+		if(isRegion && isCommonCard) {
+			
+		}
+		
+		
+		var depts = ['中医内科','中医外科','中西医结合内科','针灸科']
+		//var depts = ['病理科(儿)','中医外科','中西医结合内科','针灸科']
+		// 为河北医科大学第二医院特殊处理
+		if("00363" == '00160' && $.inArray('肾脏内科门诊', depts) != -1) {
+			$("#treatfeeName_div").html('中医辩证论治')
+		}
+		
+		// 用户只有一张卡的时候，调用保险校验函数
+    if(!Util.checkNull($("#heathCardNo0").val()) && "false" == 'true') {
+    	ad_medical_public.checkStatus($("#heathCardNo0").val(), $("#idCardNo0").val(), $("#phone0").val(), $("#deptName0").val())
+    }
+		
+	}
+
+	function addOrder() {
+		
+       
+    
+    
+    if("false" == 'true' && Util.checkNull($("#registerTypeId").val())) {
+    	ui.showTip("请选择挂号类型", 1000);
+			return;
+    }
+
+		if(Util.checkNull($("#heathCardNo0").val())) {
+			ui.showTip("请选择就诊人", 1000);
+			return;
+		}
+
+		if(isSelectObject && Util.checkNull($("#svObjectId").val())) {
+			ui.showTip("请选择服务对象", 1000);
+			return;
+		}
+
+		//如果需要选择病种，但是并没有选择，则提示请先选择病种
+		if($("#hasDisease").val() == '1' && Util.checkNull($("#diseaseId").val())) {
+			ui.showTip("请选择病种", 1000);
+			return;
+		}
+		
+		// 判断是否有分时
+		if(("1" == '1' && "0" == '0') || ("" =='1' && "0" == '1')){
+			// 判断页面隐藏域里面的开始时间和结束时间是否不存在
+			if(Util.checkNull($("#startTime0").val()) && Util.checkNull($("#endTime0").val())) {
+				$("input[name='times_radio']").prop('checked', false)
+				ui.showTip("请选择挂号时间", 1000);
+				return;
+			}
+		}
+		
+		// 判断科室名称是否为空
+		if(Util.checkNull($("#deptName0").val()) && onlineInsuran) {
+			ui.showTip("科室信息不完整", 1000);
+			return;
+		}
+		
+		// 判断就诊日期是否为空
+		if("" == '1' && Util.checkNull($("#regDate0").val())) {
+			ui.showTip("请选择就诊日期", 1000);
+			return;
+		}
+		
+		// 判断就诊日期是否为空
+		if("" == '2' && Util.checkNull($("#regDateDesc").val())) {
+			ui.showTip("请选择就诊日期", 1000);
+			return;
+		}
+
+		if(isAppointmentAudit || isDiseaseContent) {
+			//通过remark变量，提交描述到后台
+			$("#remark").val($("#discription").val());
+		}
+		// 判断接口是否出错
+		
+		if(Util.checkNull($("#diseaseId").val())) {
+			$("#diseaseId").attr("disabled", true);
+		}
+		// 判断是否需要补录身份证
+		var _idCardNo = $("#idCardNo0").val() || $("#guardianIdCardNo0").val()
+		if("false" == 'true' && !Util.verifyIdCard(_idCardNo)) {
+			choise_time.fixInputIdCardNo()
+			return
+		}
+        // 判断是否是需要填验证码
+		// if("false" == 'true' && Util.checkNull($("#picVerification").val())) {
+		// 	choise_time.showVerifyCodeDialog();
+		// 	return;
+		// }
+		// 滑动拼图验证码
+		if ("false" == 'true' && typeof slideVerify === 'object' && !slideVerify.getVerifyFlag()) {
+			slideVerify.showVerifyDialog();
+			return;
+		}
+
+		// 
+		var bindindId = $("#bindingId0").val()
+		var cardIsChoiceTakeMedical = $("#cardIsChoiceTakeMedical").val()
+		// 如果用户选择了需要领取保险的话，则弹出actionsheet确定框
+    if(cardIsChoiceTakeMedical === '1') {
+      ad_medical_public.fixedUserInfo(bindindId)
+    } else{
+			if (!Util.checkNull(true) && true === true && 0==0) {
+				choise_time.waitInBatch()
+			} else {
+				// 判断挂号排班是否重复,是则弹出弹出框。点击确定或没有重复时正常挂号
+				choise_time.tellRepeated()
+			}
+    }
+	}
+    
+	// 支付的时候校验当前卡在区域医院的同步情况
+	function checkTeantBindCard(callback) {
+		
+      
+      var selectedUserHealthcard=$("#heathCardNo0").val();
+      var canSyncSubTenantCard = choise_time.inspectSyncSubTenantCard(selectedUserHealthcard);
+      if(Util.checkNull(selectedUserHealthcard)||canSyncSubTenantCard){
+          
+             var healthcard = "";
+             if(isRegion&&isCommonCard) {
+            	healthcard = "1800600101";
+            	 if(choise_time.inspectSyncSubTenantCard(healthcard)){
+            	 	 var params = {
+            	 	 	bindingId:'E315B8A4FFFE442AB584BF94085CF732',
+            	 	 	heathCardNo:healthcard,
+            	 	 	patName:'冉德峰',
+            	 	 	patId:'1800600101',
+            	 	 	patIdCardNo:'37292219890701411X',
+            	 	 	phoneNo:'15000628962'
+            	 	 }
+            		 choise_time.getRegionSelectUserBindCard(params, callback);
+            	 }
+             }
+          
+      }else{
+    	  if(callback){
+		     callback(true);
+		  	}
+      }
+      
+      
+   
+	} 
+</script>
+<!-- 通用页面底部 -->
+
+<!-- 全局引入加载中loading -->
+
+<div id="loadingToast" class="kdui-hide">
+	<div class="kdui-mask_transparent"></div>
+	<div class="kdui-toast">
+		<i class="kdui-loading kdui-icon_toast"></i>
+		<p class="kdui-toast__content">数据加载中...</p>
+	</div>
+</div>
+<!-- 全局引入toast结果提示  -->
+
+<div id="toast" class="kdui-hide">
+	<div class="kdui-mask_transparent"></div>
+	<div class="kdui-toast kdui-toast_mini">
+		<p class="kdui-toast__content">取消成功</p>
+	</div>
+</div>
+<div class="footer-hospitial-name" style="display:none"></div> 
+<div class="footer3"></div>
+<!-- 新版调用接口需要用到的token -->
+<input type="hidden" id="userToken" value="GxyxVH07O1LHoN6tk1PtbQ=="/>
+<input type="hidden" id="userOpenId" value="oxyzl06WZiZDNwYSu0RiYQdUybvE"/>
+<input type="hidden" id="userSessionId" value="E80293851121158B33C4912A646E14F4"/>
+
+<!--维护提示-->
+
+<!-- 判断是否开通了预约挂号排班界面新增当天排班 -->
+
+
+
+<!-- <script src="/ip-pat-web/js/fastclick/fastclick.min.js" async="async"></script>
+<script src="/ip-pat-web/js/iscroll/iscroll.min.js" defer="defer"></script>
+<script src="/ip-pat-web/js/weixin/Bridge.min.js?v=c1e9238a6e" defer="defer"></script> -->
+<!-- 内联方式的引入v5版本通用js -->
+<script>"use strict";function _loadCss(e){var t={dataType:"text",success:function(e){var t=document.createElement("style");t.innerHTML=e,document.getElementsByTagName("head")[0].appendChild(t)}};$.cachedScript(e,t)}function _getIconFontResource(){$.cachedScript("//at.alicdn.com/t/font_313159_7t8r7qfr01o.js"),_loadCss("//at.alicdn.com/t/font_322443_hg9du3wuo8q.css")}function load(){setTimeout(function(){_getIconFontResource()},100),_setCurrentEnv(),$.cachedScript(Util.getBasePath()+"/js/v5/raven/raven.3.26.2.min.js",{success:function(e){try{catchJsError()}catch(e){console.error("执行坚听js error脚本错误")}}}),FastClick.attach(document.body);var e={};if(isShowTenantName&&"true"===isShowTenantName&&(e.hospitalShortName=hospitalShortName),showCopyright(e),"true"===isAppointmentRegisterMerge&&modifyTitle(),"true"!==$("#showOption").val()){Bridge.getInstance({jsApiList:["hideOptionMenu"]});var t=!1;Bridge.ready(function(){t||(t=!0,Bridge.instant.hideOptionMenu())})}showMaintenance(),"undefined"!=typeof loadIscroll&&loadIscroll(),"undefined"!=typeof bodyOnload&&bodyOnload(),Util.checkNull(tenantName)||"wxcity"===isWeixincity&&showName(tenantName),"undefined"!=typeof showAd&&showAd();var n=$("#pageOperatingLogs_pageId");void 0===n||Util.checkNull(n.val())||ajaxToPrintPageLogs(),"00404"===tenantId?($.cachedScript(Util.getBasePath()+"/js/sa/sa.js"),window._hmt=void 0):(window._hmt=void 0,$.cachedScript(Util.getBasePath()+"/js/baidu/baiduStatistics.min.js")),setTimeout(function(){"undefined"!=typeof myScroll&&myScroll.refresh()},100)}function showMaintenance(){if($(".js_kdui-maintenance")[0]){var e={dialogRoot:".js_kdui-maintenance",dialogTitle:"系统维护时间提示",primaryBtnTitle:"我知道了",defaultBtnTile:"",dialogBodyContent:$("#maintenanceTime").html()+"为系统维护时间，在该时间段内系统将限制支付及退费。",primaryBtnCb:function(){var e={method:"post",ajaxUrl:Util.getBasePath()+"/commonEntry!ajaxchangeUserSystemMaintenanceToHaspress.do",ajaxData:{openId:$("#userOpenId").val()},loadingText:"正在关闭窗口...",loadingType:"block",successCb:function(e){},failCb:function(e){},errorCb:function(){}};new AjaxApi(e).run()}};ui_dialog.init(e).show()}}function _setCurrentEnv(){var e=window.location.hostname,t="prod";"dev.mhealth100.com"===e?t="dev":"test3.mhealth100.com"===e&&(t="test"),window.sessionStorage.setItem("ip-pat-web-env",t)}function showName(e){$(".js__copyright").html(e)}function checkSensitive(e,t){Util.checkNull(e)?t.call(null,null,null):$.ajax({url:"//api.mhealth100.com/open-api/sensitive.do",contentType:"application/json",data:JSON.stringify({text:e}),type:"post",success:function(e){if(e=JSON.parse(e||"{}"),console.log(e),e&&"0"==e.resultCode){var n=JSON.parse(e.emotion||"{}"),o=JSON.parse(e.polity||"{}");t.call(null,n,o)}else t.call(null,null,null)},error:function(){ui.hideLoading(),t.call(null,null,null)}})}function catchJsError(){Raven.config("//3b2b33a1556e4a5aa1afb2141ff6bdef@sentry.mhealth100.com//2",{release:"update@2019-06-05",whitelistUrls:[/^https\:\/\/.*\.mhealth100\.com/],environment:window.sessionStorage.getItem("ip-pat-web-env"),ignoreErrors:["$ is not a function","$.extend is not a function","$.cachedScript is not a function","$.ajax is not a function","$.post is not a function","$.smartScroll is not a function","Cannot read property 'refresh' of undefined"],tags:{tenantId:tenantId,openId:openId,healthCardNo:healthCardNo}}).install(),window.addEventListener&&window.addEventListener("error",function(e){if(e.message)/Script error\./.test(e.message)||Raven.captureException(e,{logger:"selfupload"});else{var t,n=(t=e.target?e.target:e.srcElement)&&t.outerHTML;n&&n.length>200&&(n=n.slice(0,200));var o={message:"resourceError",target:{src:t&&t.src}};/^https?.*\.mhealth100.com.*\.js(\?|$)/.test(o.target.src)&&Raven.captureMessage(o.target.src,{logger:o.message})}},!0),window.addEventListener&&window.addEventListener("unhandledrejection",function(e){Raven.captureException(e.reason,{logger:"promise"})})}function showCopyright(e){var t=new Date,n=t.getFullYear(),o="金蝶医疗软件科技有限公司";void 0!==e&&void 0!==e.hospitalShortName&&(o=e.hospitalShortName+" 金蝶医疗"),$(".js__copyright").html("Copyright © 1993-"+n+" "+o)}function modifyTitle(){document.title=document.title.replace("预约挂号","")}function ajaxToPrintPageLogs(){$.ajax({url:Util.getBasePath()+"/pageStatisticsLogs!printPageOperatLogs.do",data:$("#pageOperatingLogsForm").serialize(),type:"post",cache:!1,dataType:"json",success:function(e){},error:function(){}})}function showLoading(e){ui.showLoading(e)}function hideLoading(){ui.hideLoading()}var tenantId="00363",openId="oxyzl06WZiZDNwYSu0RiYQdUybvE",healthCardNo="1800600101",tenantName="西京医院",isWeixincity="",isShowTenantName='false',hospitalShortName='',isAppointmentRegisterMerge="true";jQuery.cachedScript=function(e,t){return t=$.extend({dataType:"script",cache:!0,timeout:3e3,url:e},t||{}),jQuery.ajax(t)};var listenerHisory=function(){var e=sessionStorage.getItem("aiShenUrl");Util.checkNull(e)||"undefined"==typeof history||(history.pushState(null,null,document.URL+"&rand="+Math.random()),window.addEventListener("popstate",function(t){console.log("通过popstate回到前面一个页面,aiShenUrl"+e),window.location.href=e}))};"serviceWorker"in navigator&&window.addEventListener("load",function(){navigator.serviceWorker.register("/ip-pat-web/service-worker.js?201807190002").then(function(e){console.log("ServiceWorker registration successful with scope: ",e.scope)}).catch(function(e){console.log("ServiceWorker registration failed: ",e)})});
+//# sourceMappingURL=common_footer_v5.min.js.map
+</script>
+</body>
+</html>
+
+<style>
+ .picVerification {
+    width: 2.5rem;
+    height: 1.2rem;
+ }
+ .kd-row_center {
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+ }
+</style>
+<!-- 引入记录页面操作日志需要用到隐藏form表单 -->
+<form id="pageOperatingLogsForm" class="hide">
+	<input type="hidden" name="pageOperatingLogs.pageId" id="pageOperatingLogs_pageId" value="CHOISE_TIME_YY"/>
+</form>

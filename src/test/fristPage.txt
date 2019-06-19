@@ -1,0 +1,814 @@
+
+
+
+
+
+
+
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta name="format-detection" content="telephone=no" />
+<title>医生信息</title>
+<!-- <link href="//at.alicdn.com/t/font_322443_kvgze99pv079zfr.css" rel="preload" as="style">
+<link href="//at.alicdn.com/t/font_322443_kvgze99pv079zfr.ttf?t=1522660445168" rel="preload" as="font/ttf" crossorigin>
+<link href="//at.alicdn.com/t/font_313159_2puyq4ggmxx.js" rel="preload" as="script">
+<link href="/ip-pat-web/js/v5/raven/raven.3.26.2.min.js" rel="preload" as="script">
+<link href="/ip-pat-web/js/baidu/baiduStatistics.min.js" rel="preload" as="script"> -->
+<link href="//res.wx.qq.com/open/js/jweixin-1.4.0.js" rel="preload" as="script">
+<link href="//hm.baidu.com/hm.js?4f5e6d65812072c49089f068396b8513" rel="preload" as="script">
+<link rel="dns-prefetch" href="mp.mhealth100.com">
+<link rel="dns-prefetch" href="images.mhealth100.com">
+<link rel="dns-prefetch" href="gcdn.mhealth100.com">
+<link rel="dns-prefetch" href="imgcdn.mhealth100.com">
+<link rel="dns-prefetch" href="at.alicdn.com">
+<link rel="icon" type="image/png" href="/ip-pat-web/images/v5/system/favicon.png">
+<!-- <link rel=stylesheet href="//at.alicdn.com/t/font_322443_kvgze99pv079zfr.css">
+<script src="//at.alicdn.com/t/font_313159_2puyq4ggmxx.js" async="async" crossorigin="anonymous"></script> -->
+<script src="/ip-pat-web/js/iscroll/iscroll.min.js" defer="defer"></script>
+<script src="/ip-pat-web/js/weixin/Bridge.min.js?v=c1e9238a6e" defer="defer"></script>
+<script src="/ip-pat-web/js/fastclick/fastclick.min.js" async="defer"></script>
+<script src="/ip-pat-web/js/polyfill/polyfill.min.js"></script>
+<script src="/ip-pat-web/js/jquery/3.2.1/jquery-3.2.1.min.js"></script>
+
+
+
+		<link rel="stylesheet" href="//gcdn.mhealth100.com/kdui/style/kdui/kdui.min.css?2018120501"/>
+		<script>
+			var isShowVConsole = ''
+			if(isShowVConsole === "show"){
+				$.getScript("//res.wx.qq.com/mmbizwap/zh_CN/htmledition/js/vconsole/3.0.0/vconsole.min.js", function() {
+					var vConsole = new VConsole();
+				})
+			}
+		</script>
+		<script src="//gcdn.mhealth100.com/kdui/js/kdui/kdui.min.js?2018120501" crossorigin="anonymous"></script>
+	
+
+<!-- 全局引入加载中loading -->
+
+<div id="loadingToast" class="kdui-hide">
+	<div class="kdui-mask_transparent"></div>
+	<div class="kdui-toast">
+		<i class="kdui-loading kdui-icon_toast"></i>
+		<p class="kdui-toast__content">数据加载中...</p>
+	</div>
+</div>
+<script type="text/javascript">
+	ui.showLoading('正在加载...');
+	console.log("devicePixelRatio:" + window.devicePixelRatio)
+	document.onreadystatechange = domStateChange;
+	function domStateChange(){
+		if(document.readyState == "complete"){ //当页面加载状态为完全结束时进入 
+				ui.hideLoading();
+		}
+	} 
+</script>
+<!-- 引入高清解决方案 -->
+<script>!function(e){function t(a){if(i[a])return i[a].exports;var n=i[a]={exports:{},id:a,loaded:!1};return e[a].call(n.exports,n,n.exports,t),n.loaded=!0,n.exports}var i={};return t.m=e,t.c=i,t.p="",t(0)}([function(e,t){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var i=window;t["default"]=i.flex=function(e,t){var a=e||100,n=t||1,r=i.document,o=navigator.userAgent,d=o.match(/Android[\S\s]+AppleWebkit\/(\d{3})/i),l=o.match(/U3\/((\d+|\.){5,})/i),c=l&&parseInt(l[1].split(".").join(""),10)>=80,p=navigator.appVersion.match(/(iphone|ipad|ipod)/gi),s=i.devicePixelRatio||1;p||d&&d[1]>534||c||(s=1);var u=1/s,m=r.querySelector('meta[name="viewport"]');localStorage.setItem("initial-scale", u*n);m||(m=r.createElement("meta"),m.setAttribute("name","viewport"),r.head.appendChild(m)),m.setAttribute("content","width=device-width,user-scalable=no,initial-scale="+u+",maximum-scale="+u+",minimum-scale="+u+",viewport-fit=cover"),r.documentElement.style.fontSize=a/2*s*n+"px"},e.exports=t["default"]}]);  
+// var currentScreenW = window.screen.availWidth || 375
+var fontscale = 1
+/*if(currentScreenW < 375 ) {
+	fontscale = currentScreenW/375
+}*/
+flex(100, fontscale);
+</script>
+</script>
+<body onload="load();">
+<style>.kdui_p,.sec_div div{text-align:center}.kd-block_day,.kdui-div2{-webkit-box-orient:vertical;-webkit-box-direction:normal}.kd-ft:after,.kd-icon_sp,.kd-list_week,.svgpic{position:relative}.kdui-doctor-list__box{margin:.2rem .3rem;border-radius:.2rem;background:#fff}.kdui-doctor-list__box_info{margin:0 .3rem .25rem;padding-top:.25rem;border-top:1px solid #eee!important;color:#555;font-size:.26rem;line-height:1.6}.kdui-doctorbox .kdui-cell_autoh>.kdui-cell__ft{-webkit-align-self:flex-start;align-self:flex-start}.kdui-doctorbox a>.kdui-cell_autoh>.kdui-cell__ft{-webkit-align-self:center!important;align-self:center!important}.kdui-doctorbox .kdui-cell_autoh>.kdui-cell__hd{margin-right:.3rem!important}.kdui-doctorbox .kdui-cell_autoh{padding-top:.3rem!important;padding-bottom:.3rem!important}.icon-collection_push{position:relative;top:-.07rem}#testImg img{width:3rem;height:3rem}.first_div{word-break:break-all;width:22.5%;height:auto}.kdui-bor1{color:#a1a1a1}.kdui-bor1,.kdui-bor2,.kdui-bor3{border-bottom:1px solid #eee;border-right:1px solid #eee}.kdui-bor3{color:#597ef7}.kdui-div2{height:1.2rem;display:-webkit-box;display:-webkit-flex;display:flex;-webkit-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;justify-content:center}.kdui_p{font-size:.26rem;padding:5px}.kd-list_week{width:100%;overflow:hidden;background:#fff;height:1.4rem;margin-top:.2rem}.kd-list_hidden{height:auto;font-size:0}.kd-block_day{display:-webkit-inline-box;display:-webkit-inline-flex;display:inline-flex;-webkit-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;justify-content:center;-webkit-box-align:center;-webkit-align-items:center;align-items:center;color:#222;width:1.1rem;margin:0 .2rem;height:1.36rem}.infocard-bg,.kd-pic_address{display:-webkit-box;display:-webkit-flex;-webkit-flex-direction:row;-webkit-box-orient:horizontal;-webkit-box-direction:normal}.kd-block_bd{font-size:.32rem}.kd-block_desc{margin-top:.15rem;font-size:.28rem}.kd-block_current{color:#597ef7;border-bottom:.04rem solid #597ef7}.kd-pic_address{padding:.3rem .4rem .2rem .3rem;background:#fff;width:100%;color:#888;font-size:.28rem;display:flex;flex-direction:row;-webkit-flex-wrap:nowrap;flex-wrap:nowrap}.kd-hd_disable{color:#bbb}.kd-ft__desc{background:#597ef7}.kd-ft__desc,.kd-ft__desc_disable{color:#fff;font-size:.27rem;border-radius:.3rem;padding:.05rem .2rem}.kd-ft__desc_disable{background:#ddd}.kd-ft:after{content:"";display:inline-block;width:.2rem;height:.2rem;border-width:.04rem .04rem 0 0;border-color:#bbb;border-style:solid;-webkit-transform:rotate(135deg);transform:rotate(135deg)}.kd-icon_sp{font-size:.32rem;color:#888;bottom:.06rem;padding-right:.07rem}.svgpic{top:.05rem}.infocard-bg{position:fixed;top:.5rem;left:0;width:100%;display:flex;flex-direction:row;-webkit-box-pack:center;-webkit-justify-content:center;justify-content:center}.qrcode-bg,.qrcode-canvas{background:#597ef7;width:6.5rem;height:7.5rem;border-radius:3%;overflow:hidden}.qrcode-canvas{top:.5rem}.close-bg,.qrcode-canvas{position:fixed;left:0;right:0;margin:auto}.close-bg{top:8.1rem;width:4rem}.kd-row{-webkit-box-orient:horizontal;-webkit-box-direction:normal;-webkit-flex-direction:row;flex-direction:row}.kd-column,.kd-row{display:-webkit-box;display:-webkit-flex;display:flex;-webkit-box-align:center;-webkit-align-items:center;align-items:center}.kd-column{-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;flex-direction:column}.kd-avatar{width:1.6rem;height:1.6rem;margin:.3rem;border-radius:50%}.kd-pic{width:4rem;height:4rem;margin:.2rem}.kd-pic_sm{width:1rem;height:1rem;position:absolute;top:0;left:0;margin:auto;right:0;bottom:0}.kd-pic_share{display:inline-block;width:.4rem;height:.4rem;position:relative;top:.1rem}</style>
+<!-- 获取健康卡的名称 -->
+
+<!-- 医生主页按钮名称 -->
+
+<!-- 获取自定义挂号须知 -->
+
+<!-- 获取挂号科室是否使用诊元名称 -->
+
+<!-- 获取医院在医生列表界面是否需要显示咨询按钮（1：显示，0：不显示） -->
+
+<!-- 是否屏蔽线上挂号数 -->
+
+<!-- 是否屏蔽号源信息 -->
+
+
+
+
+<style>  
+@supports (bottom: env(safe-area-inset-bottom)) {
+	.kdui_wrapper  {
+	  bottom: env(safe-area-inset-bottom);
+	}
+}
+</style>
+<div class="kdui_wrapper vconsole_entry" id="wrapper">
+<div class="kdui_scroller" id="scroller">
+
+
+	<div class="kdui-flex__item" data-ishow-tooday-list="true">
+		<!-- 当天挂号 -->
+		<div class="kdui-doctor-list__box" data-test="com.kingdeehit.mobile.pat.entity.DoctorInfo@5402532a" style="margin: 0;border-radius:0">
+			<p id="desc_0" class="kdui-hide">医生特长:擅长诊治肾小球疾病、肾病综合征、泌尿系感染、lgA肾病、紫癜性肾炎、慢急性肾功能不全等疾病。<br>医生简介:医学硕士，副主任医师，2006年毕业于中国医科大学，一直从事临床肾脏病的研究工作。获得陕西省科学技术一等奖1项，发表论文10余篇，SCI4篇，副主编专著1部，参编4部。出诊时间：周六全天门诊</p>
+			<!-- 二维码弹出mask -->
+			<div id="mask" class="kdui-mask" style="display: none;"></div>
+			<div class="kdui-doctorbox kdui-border_b">
+				<div class="kdui-cell kdui-cell_second kdui-cell_autoh">
+					<div class="kdui-cell__hd">
+						<div class="kdui-icon_xl kdui-icon_cicle kdui-pv_xs" style="background-image: url('//images.mhealth100.com/images/doctorpic/00363/594aae0bb4a41fef6e053c980948a1f6.png'),url(images/v5/doctor/pic_dc.png)"></div>
+					</div>
+					<div id="test" data-test="com.kingdeehit.mobile.pat.entity.DoctorInfo@5402532a" class="kdui-cell__bd">
+						<div>马峰副教授
+							<font class="kdui-text_sm kdui-text_secondary">&nbsp;&nbsp;副教授</font>
+							&nbsp;&nbsp;
+							<!-- 二维码点击弹出//传参[目前只需要出现在微信上] -->
+							
+								<a id="openInfocard">
+									<div class="kd-pic_share" style="background-image:url(/ip-pat-web/images/v5/doctor/share.png);background-size: 100% 100%;"></div>
+								</a>
+							
+						</div>
+						<div id="showdept_3FD19EDC0762476AAAA896CE5F9E66FE" class="kdui-text_secondary kdui-text_sm" style="display: none;"></div>
+						
+							<div class="kdui-text_secondary kdui-text_sm">线上挂号:&nbsp;964&nbsp;</div>
+						
+						
+						<!-- 是否有咨询医生 -->
+				           <div class="js_doctor-home">			           	
+							<!--<div class="kdui-text_secondary kdui-text_sm" data-doctor-id="594aae0bb4a41fef6e053c980948a1f6" data-tenant-id="00363" style="display:none;">
+							  <a>	
+								<svg class="icon svgpic" aria-hidden="true">
+								   <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-yhgt"></use>
+								</svg>
+							    <span style="color: #555;">在线咨询</span>
+							   </a>
+							</div>-->
+                            </div>
+					</div>
+
+					<!-- 是否有医生收藏功能 -->
+					<div class="kdui-cell__ft">
+						
+							<input id="focusId0" type="hidden" value="">
+							<div id="focus0" onclick="doctor.focusDoc('0','594a6ab55d756da01e053c980948a20f','肾脏内科门诊','594aae0bb4a41fef6e053c980948a1f6','马峰副教授','100363001','副教授','481B646384A14ECE9962F77C206F0713','1800600101')">
+								
+									<svg class="icon" aria-hidden="true">
+										<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-collection_normal"></use>
+									</svg>
+								
+								
+							</div>
+						
+					</div>
+				</div>
+			</div>
+
+			<!-- 是否有咨询医生 -->
+			
+			
+			<!-- 是否有推荐方案 -->
+			
+		</div>
+		<!-- 新医生主页排班信息 -->
+		<div class="page__bd kdui-flex__item">
+			<ul class="kdui-tab">
+				<li class="kdui-tab__item" data-current="xinxi">
+					出诊信息
+				</li>
+				<li class="kdui-tab__item" data-current="jianjie">
+					医生简介
+				</li>
+			</ul>
+		</div>
+		<div id="docDesc" style="display: none" class="">
+			
+				<div class="kdui-cells">
+					<div class="kdui-doctor-list__box_info kdui-pb_default" id='docDescMessage'>医生特长:擅长诊治肾小球疾病、肾病综合征、泌尿系感染、lgA肾病、紫癜性肾炎、慢急性肾功能不全等疾病。<br>医生简介:医学硕士，副主任医师，2006年毕业于中国医科大学，一直从事临床肾脏病的研究工作。获得陕西省科学技术一等奖1项，发表论文10余篇，SCI4篇，副主编专著1部，参编4部。出诊时间：周六全天门诊</div>
+				</div>
+			
+			
+		</div>
+		<div id="listMessage" class="listMessage">
+			
+			
+			
+				<div class="kd-list_week" id="dayList">
+					<div class="kd-list_hidden" id="dayHiddenList">
+						
+							<div class="kd-block_day kd-block_current" data-is-can-registration="true" data-date="2019-06-16">
+								<div class="kd-block_bd ">周日</div>
+								<div class="kd-block_desc ">06-16
+								</div>
+							</div>
+						
+							<div class="kd-block_day " data-is-can-registration="true" data-date="2019-06-17">
+								<div class="kd-block_bd ">周一</div>
+								<div class="kd-block_desc ">06-17
+								</div>
+							</div>
+						
+					</div>
+			  </div>
+				<div id="branchList" style="margin-top: .03rem;">
+					
+						<div class="kd-pic_address">
+							<div style="flex:1;">
+								<i class="iconfont icon-adress kd-icon_sp"></i>
+								
+								
+									<span>肾脏内科门诊</span>
+								
+								<span> - 西京医院</span>
+							</div>
+						</div>
+						<div class="kdui-cells kdui-border_v">
+							
+								
+									
+									
+										<a class="kdui-cell_access" href="javascript:;" onclick="doctor.choiseDoctor('_000', 'Order')">
+									
+									<div class="kdui-cell">
+										<div class="kdui-cell__bd">上午</div>
+										<div class="kdui-cell__ft">
+											
+											
+												<div class="kd-ft__desc">余号：6</div>
+											
+										</div>
+									</div>
+									</a>
+								
+					
+								
+					
+								
+					
+							
+								
+									
+									
+										<a class="kdui-cell_access" href="javascript:;" onclick="doctor.choiseDoctor('_001', 'Order')">
+									
+									<div class="kdui-cell">
+										<div class="kdui-cell__bd">下午</div>
+										<div class="kdui-cell__ft">
+											
+											
+												<div class="kd-ft__desc">余号：29</div>
+											
+										</div>
+									</div>
+									</a>
+								
+					
+								
+					
+								
+					
+							
+						</div>
+					
+					<!--分院 end-->
+				</div>
+				<script>"use strict";
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+$(function () {
+	$("#dayHiddenList").width($(".kd-block_day").length * 1.5 + "rem");
+	var myHScroll = new IScroll('#dayList', {
+		preventDefault: false,
+		scrollX: true,
+		scrollY: false,
+		mouseWheel: true,
+		fadeScrollbars: true
+	});
+	var jsonList = $('#listInfo').html();
+	if (!jsonList) {
+		return;
+	}
+	var scheduling = JSON.parse(jsonList);
+
+	function getHtml(date) {
+		var html = '';
+		for (var i = 0; i < scheduling.length; i++) {
+			if (date === scheduling[i].date.regDate) {
+				html = generateHtml(scheduling[i].regInfoList, i, scheduling[i].date.isToday);
+				break;
+			}
+		}
+		return html;
+	}
+
+	function generateHtml(data, num, flag) {
+		var html = '';
+		for (var i = 0; i < data.length; i++) {
+			var item = data[i];
+			var title = data[i].deptName;
+			if (title === '') {
+				var tmpcliunitName = data[i].timeRegInfoList[0].cliunitName;
+				var tmpdeptName = data[i].timeRegInfoList[0].deptName;
+				title = tmpcliunitName === '' ? tmpdeptName : tmpcliunitName;
+			}
+			var hospitalname = $('#valueMachine').data('hospitalname');
+			if (title !== '' && title !== undefined && hospitalname !== '' && title !== hospitalname) {
+				title = title + ' - ' + hospitalname;
+			}
+			var branchHtml = "<div class=\"kd-pic_address\"><div style=\"flex:1;\">\n\t\t\t\t\t\t\t<i class=\"iconfont icon-adress kd-icon_sp\"></i><span>" + title + "</span>\n\t\t\t\t\t\t   </div></div>";
+
+			var tmpHead = "<div class=\"kdui-cells kdui-border_v\">";
+			branchHtml = branchHtml + tmpHead;
+			for (var j = 0; j < item.timeRegInfoList.length; j++) {
+				var tmpHtml = "";
+				var flag = item.timeRegInfoList[j].regStatus;
+				if (flag === '1' && item.timeRegInfoList[j].regleaveCount > 0) {
+					var tmp = "<a class=\"kdui-cell_access\" href=\"javascript:;\" onclick=\"doctor.choiseDoctor('_" + num + i + j + "', 'Order')\">";
+					if (flag == true) {
+						tmp = "<a class=\"kdui-cell_access\" href=\"javascript:;\" onclick=\"doctor.choiseDoctor('_" + num + i + j + "', 'Today')\">";
+					}
+					var strValue = "\u4F59\u53F7\uFF1A" + item.timeRegInfoList[j].regleaveCount;
+					if (item.timeRegInfoList[j].regleaveCount > 99) {
+						strValue = "\u6709\u53F7";
+					}
+					tmpHtml = tmp + ("<div class=\"kdui-cell\">\n\t\t\t\t\t\t<div class=\"kdui-cell__bd\">" + item.timeRegInfoList[j].shiftName + "</div>\n\t\t\t\t\t\t<div class=\"kdui-cell__ft\"><div class=\"kd-ft__desc\">" + strValue + "</div></div>\n\t\t\t\t\t\t</div></a>");
+				} else if (flag === '1' && item.timeRegInfoList[j].regleaveCount == 0 || flag === '') {
+					tmpHtml = "<a class=\"kdui-cell_access\" href=\"javascript:;\">\n\t\t\t\t\t\t<div class=\"kdui-cell\">\n\t\t\t\t\t\t<div class=\"kdui-cell__bd kd-hd_disable\">" + item.timeRegInfoList[j].shiftName + "</div>\n\t\t\t\t\t\t<div class=\"kdui-cell__ft\"><div class=\"kd-ft__desc_disable\">\u5DF2\u6302\u6EE1</div></div>\n\t\t\t\t\t\t</div></a>";
+				} else if (flag === '0') {
+					tmpHtml = "<a class=\"kdui-cell_access\" href=\"javascript:;\">\n\t\t\t\t\t\t<div class=\"kdui-cell\">\n\t\t\t\t\t\t<div class=\"kdui-cell__bd kd-hd_disable\">" + item.timeRegInfoList[j].shiftName + "</div>\n\t\t\t\t\t\t<div class=\"kdui-cell__ft\"><div class=\"kd-ft__desc_disable\">\u505C\u8BCA</div></div>\n\t\t\t\t\t\t</div></a>";
+				}
+				branchHtml = branchHtml + tmpHtml;
+			}
+
+			branchHtml = branchHtml + "</div>";
+			html = html + branchHtml;
+		}
+		return html;
+	}
+
+	$('.kd-block_day').each(function () {
+		$(this).click(function () {
+			console.log('版本: 1.10');
+			var date = $(this).data('date');
+			if (date == 'empty') {
+				return;
+			}
+			$('.kd-block_current').removeClass('kd-block_current');
+			$(this).addClass('kd-block_current');
+			var html = getHtml(date);
+			$('#branchList').html(html);
+		});
+	});
+
+	function _loadHtml2canvas() {
+		return new Promise(function (resolve, reject) {
+			$.cachedScript("//html2canvas.hertzen.com/dist/html2canvas.min.js", {
+				success: function success() {
+					try {
+						resolve();
+					} catch (e) {
+						reject(e);
+					}
+				}
+			});
+		});
+	}
+
+	function _loadImg(img) {
+		return new Promise(function (resolve, reject) {
+			if (img.complete) {
+				resolve();
+			}
+			img.onload = function () {
+				resolve();
+			};
+			img.onerror = function () {
+				reject(e);
+			};
+		});
+	}
+
+	var infocardFlag = false;
+	$('#openInfocard').click(_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+		return regeneratorRuntime.wrap(function _callee$(_context) {
+			while (1) {
+				switch (_context.prev = _context.next) {
+					case 0:
+						if (!(infocardFlag === false)) {
+							_context.next = 22;
+							break;
+						}
+
+						ui.showLoading('医生名片生成中...');
+						_context.prev = 2;
+						_context.next = 5;
+						return _loadHtml2canvas();
+
+					case 5:
+						_context.next = 7;
+						return _loadImg($("#info-pic-qrcode")[0]);
+
+					case 7:
+						$('#mask').show();
+						$('#infocontent').html($('#qrcode-canvas').html());
+						$('#infocard').show();
+						$('#close-bg').show();
+						infocardFlag = true;
+						html2canvas(document.getElementById("infocontent"), {
+							useCORS: true
+						}).then(function (canvas) {
+							var image = canvas.toDataURL("image/png");
+							var fake = '<img src="' + image + '" class="qrcode-bg"/>';
+							$('#infocontent').html(fake);
+							ui.hideLoading();
+						});
+						_context.next = 20;
+						break;
+
+					case 15:
+						_context.prev = 15;
+						_context.t0 = _context["catch"](2);
+
+						ui.hideLoading();
+						ui.showTip('加载失败,请稍后再试');
+						Raven.captureException(_context.t0, {
+							logger: 'selfupload'
+						});
+
+					case 20:
+						_context.next = 25;
+						break;
+
+					case 22:
+						$('#mask').show();
+						$('#infocard').show();
+						$('#close-bg').show();
+
+					case 25:
+					case "end":
+						return _context.stop();
+				}
+			}
+		}, _callee, this, [[2, 15]]);
+	})));
+
+	$('#closeBt').click(function () {
+		$('#mask').hide();
+		$('#infocard').hide();
+		$('#close-bg').hide();
+	});
+
+	// 找到最近的可预约的号源日期
+	var firstSelected = scheduling.findIndex(function (value, index, arr) {
+		return value.date.isCanRegistration;
+	});
+	// 没有找到可以选择的日期或者是第一个就可以选择，则忽略
+	if (firstSelected === -1 || firstSelected === 0) {
+		return;
+	}
+	// 自动触发选择
+	$(".kd-block_day:nth(" + firstSelected + ")").trigger('click');
+	if (firstSelected >= 2) {
+		myHScroll.scrollToElement($(".kd-block_day:nth(" + (firstSelected - 1) + ")")[0]);
+	}
+});</script>
+			
+		</div>
+	</div>
+
+
+<div class="kdui-page__ft">
+	<div class="kdui-footer">
+		<div class="js__copyright">Copyright © 1993-2017 金蝶医疗软件科技有限公司</div>
+	</div>
+</div>
+
+</div>
+</div>
+<script>
+	var myScroll;
+	function loadIscroll() {
+		myScroll = new IScroll('#wrapper', {
+			preventDefault: false,
+			scrollbars: true,
+			mouseWheel: true,
+			fadeScrollbars: true/*,
+			probeType: 3*/
+		}); 
+		document.getElementById("wrapper").addEventListener('touchmove', function(event) { event.preventDefault() }, false)
+		if(typeof loadIscrollCb != "undefined") {
+			loadIscrollCb();
+		}
+	}
+</script>
+
+<div id="listInfo" style="display:none;">
+  [{"date":{"isToday":false,"regDate":"2019-06-16","isCanRegistration":true,"weekName":"星期日"},"regInfoList":[{"deptId":"594a6ab55d756da01e053c980948a20f","deptName":"肾脏内科门诊","desc":"","doctorId":"594aae0bb4a41fef6e053c980948a1f6","doctorLevelCode":"6101000001000632","doctorName":"马峰副教授","doctorTitle":"副教授","endTime":"","gid":"3FD19EDC0762476AAAA896CE5F9E66FE","hospitalId":"","isToday":false,"regDate":"2019-06-16","regWeekDay":"","regcount":"","schemaId":"","startTime":"","timeRegInfoList":[{"cliunitId":"594a6ab55d756da01e053c980948a20f","cliunitName":"肾脏内科门诊","deptId":"594a6ab55d756da01e053c980948a20f","deptName":"肾脏内科门诊","doctorId":"","endTime":"null","hasRegisterType":"","isTimeReg":"1","regFee":"0","regStatus":"1","regTotalCount":"30","regleaveCount":"6","roomAddress":"","scheduleId":"7c21834aae17dccdae053219e948a530","schemaId":"","shiftName":"上午","startTime":"null","timeFlag":"1","treatFee":"1200"},{"cliunitId":"594a6ab55d756da01e053c980948a20f","cliunitName":"肾脏内科门诊","deptId":"594a6ab55d756da01e053c980948a20f","deptName":"肾脏内科门诊","doctorId":"","endTime":"null","hasRegisterType":"","isTimeReg":"1","regFee":"0","regStatus":"1","regTotalCount":"30","regleaveCount":"29","roomAddress":"","scheduleId":"7c21834aae17dccdae053219e948a530","schemaId":"","shiftName":"下午","startTime":"null","timeFlag":"2","treatFee":"1200"}],"weekName":"星期日"}]},{"date":{"isToday":false,"regDate":"2019-06-17","isCanRegistration":true,"weekName":"星期一"},"regInfoList":[{"deptId":"594a6ab55d756da01e053c980948a20f","deptName":"肾脏内科门诊","desc":"","doctorId":"594aae0bb4a41fef6e053c980948a1f6","doctorLevelCode":"6101000001000632","doctorName":"马峰副教授","doctorTitle":"副教授","endTime":"","gid":"3FD19EDC0762476AAAA896CE5F9E66FE","hospitalId":"","isToday":false,"regDate":"2019-06-17","regWeekDay":"","regcount":"","schemaId":"","startTime":"","timeRegInfoList":[{"cliunitId":"594a6ab55d756da01e053c980948a20f","cliunitName":"肾脏内科门诊","deptId":"594a6ab55d756da01e053c980948a20f","deptName":"肾脏内科门诊","doctorId":"","endTime":"null","hasRegisterType":"","isTimeReg":"1","regFee":"0","regStatus":"1","regTotalCount":"30","regleaveCount":"25","roomAddress":"","scheduleId":"7c21834aae17dccdae053219e948a530","schemaId":"","shiftName":"下午","startTime":"null","timeFlag":"2","treatFee":"1200"}],"weekName":"星期一"}]}]
+</div>
+
+<div id="infocard" class="infocard-bg" style="display: none;">
+  <div id="infocontent" class="display:inline-block;height:100%;">
+  </div>	
+</div>
+
+ <div id="close-bg" class="close-bg kd-column"  style="justify-content: center; display:none;">
+      <div style="color: #fff;margin-top: .2rem;margin-bottom: .2rem;">长按医生名片 发送给朋友</div>
+     <i id="closeBt" class="iconfont icon-failure" style="font-size: .58rem; color: #fff;"></i>
+ </div>
+
+<div id="qrcode-canvas" class="qrcode-canvas" style="display: none;">
+	<div id="qrcode" class="qrcode-bg" style="background-image:url(/ip-pat-web/images/v5/my_order/docInfo.png);background-size: 100% 100%;">
+	  <div class="kd-row" style="align-items: flex-start;">
+	     <img id="info-pic-avator" src="//images.mhealth100.com/images/doctorpic/00363/594aae0bb4a41fef6e053c980948a1f6.png" class="kd-avatar" onerror="this.src='/ip-pat-web/images/v5/doctor/pic_dc.png'">
+          <div style="width: 4rem; font-size: .32rem; color: #FFF; line-height: 120%;">
+	       <div style="margin-top:.4rem"><span style="font-size: .45rem;">马峰副教授</span></div>
+	       <div class="kdui-mt_sm" style="max-width: 4rem;"><span>西京医院</span></div>
+	       <div class="kdui-mt_xs" style="max-width: 4rem;"><span>副教授</span> <span class="kdui-ml_sm">肾脏内科门诊</span></div>
+	     </div>	
+	  </div>
+	  <div class="kd-row" style="justify-content: center;position: relative; margin-top:.3rem;">
+	     <img id="info-pic-qrcode" src="/ip-pat-web/doctorCard!newDownloadQrImg.do?hospitalId=100363001&deptId=594a6ab55d756da01e053c980948a20f&doctorId=594aae0bb4a41fef6e053c980948a1f6&hospitalName=西京医院&deptName=肾脏内科门诊&doctorName=马峰副教授" class="kd-pic">
+	  </div>
+	</div>
+</div>
+
+<!-- 弹出的二维码html骨架  js填充内容 -->
+<div style="height: 8rem;margin: 0 auto;left: 0;width: 80%;right: 0;position: fixed;z-index: 11111;display: none;top: 50%;margin-top: -4rem" id="otherDialogBody">
+	<div style="background-image:url(/ip-pat-web/images/v5/my_order/docInfo.png);width: auto;background-size: 100% 100%;">
+		<div class="kdui-cell" style="padding-top: 1rem;">
+			<div class="kdui-cell__hd" style="background-size:100% 100%;background-repeat:no-repeat;height: 1rem;width: 1rem;background-image: url('//images.mhealth100.com/images/doctorpic/00363/594aae0bb4a41fef6e053c980948a1f6.png'),url(images/v5/doctor/pic_dc.png)">
+			</div>
+			<div class="kdui-cell__bd" style="margin-left: 30px;">
+				<div id="doctorName" style="font-size: .4rem;color: rgba(255, 255, 255, 1);"></div>
+				<div id="hospitalName" style="font-size: .28rem;color: rgba(255, 255, 255, 1);"></div>
+				<div id="doctorTitle" style="font-size: .28rem;color: rgba(255, 255, 255, 1);"></div>
+			</div>
+		</div>
+		<div class="kdui-pic">
+			<div id="testImg" style="display: flex;justify-content: center;align-items: center;height: 5rem;">
+			</div>
+		</div>
+	</div>
+	<div style="text-align: center;" class="kdui-mt_lg kdui-text_secondary">
+		<p style="color: rgba(255, 255, 255, 1);font-size: .36rem;">长按医生名片，发送给朋友</p>
+	</div>
+	<div onclick="doctor.clickFunction()" class="kdui-mt_lg" style="width: .9rem;height: .9rem;margin: 0 auto;padding-left: 10px">
+		<img src="/ip-pat-web/images/v5/my_order/icon_close@2x.png" style="height: .64rem;width: .64rem">
+	</div>
+</div>
+
+<!-- 引入从下往上弹出框 -->
+
+<div id="kdui-actionsheet__warp" style="height: 100%;">
+		<div class="kdui-mask" style="display: none;"></div>
+		<div class="kdui-actionsheet">
+			<div class="kdui-actionsheet__title">请看下面的内容</div>
+			<div class="kdui-actionsheet__menu">
+				<!-- js动态注入 -->
+			</div>
+			<div class="kdui-actionsheet__action">
+				<div class="kdui-actionsheet__cell">取消</div>
+			</div>
+		</div>
+	</div>
+<!-- 引入弹出框 -->
+
+<div class="js_kdui-dialog" style="display: none;height: 100%;">
+	<div class="kdui-mask kdui-mask__dialog"></div>
+	<div class="kdui-dialog">
+		<div class="kdui-dialog__hd"><strong class="kdui-dialog__title">温馨提示</strong></div>
+		<div class="kdui-dialog__bd">这个里面是弹窗的内容</div>
+		<div class="kdui-dialog__ft">
+			<a href="javascript:;" class="kdui-dialog__btn kdui-dialog__btn_default">取消</a>
+			<a href="javascript:;" class="kdui-dialog__btn kdui-dialog__btn_primary">确认</a>
+		</div>
+	</div>
+</div>
+<p class="kdui-hide" id="odernotehidden"><font color="#FF3333">温馨提示:为确保您挂号成功，如您在业务高峰期预约，请勿立即支付；<br/>支付有效期为<b>两个小时</b>，请您避开16:00-16:30时段，进入到“我的挂号”进行支付。</font>
+1、预约挂号需在2小时内支付费用，请于就诊前半小时至各楼层自助机上进行报到取号等候就诊。
+2、同一用户同一天只能预约两个专家号，同一科室限约一个。
+3、取消预约：请于就诊前一天取消预约，就诊当日需到窗口进行退费操作。
+4、医生停诊：预约号自动取消，不做顺延，会及时推送消息告知患者。
+5、黑名单：若未能按约定前来取号,号源作废，费用不予退还，违约两次,则计入黑名单半年内无法预约。
+6、法定节假日期间，预约挂号暂停，以当日出诊医生为准。
+7、每日夜间23:00至次日凌晨1:30系统维护期间不可进行预约挂号。</p>
+<!-- 挂号弹出挂号须知主题内容 -->
+<div class="kdui-hide" id="ordernotecontent">
+	<div class="kdui-cell kdui-cell_multi" style="margin: 0;padding: 0;">
+		
+		
+			<div class="kdui-cell__bd" id="ordernote"></div>
+		
+	</div>
+</div>
+
+
+<!-- 提交的表单  (已合并预约挂号) -->
+<div id="valueMachine" data-hospital-id="100363001" data-hospitalname="西京医院"></div>
+
+	
+		
+			
+				
+					
+					  <form action="wxInfo!getRegPatient.do" method="get" id="submitForm_000" accept-charset="utf-8">
+					
+						
+						<input type="hidden" name="hospitalId" value="100363001" />
+							
+						
+							
+							
+							   <input type="hidden" name="deptId" value="594a6ab55d756da01e053c980948a20f" />
+							   <input type="hidden" name="deptName" value="肾脏内科门诊" />
+							
+							
+						<input type="hidden" name="doctorId" value="594aae0bb4a41fef6e053c980948a1f6" />
+						<input type="hidden" name="regDate" value="2019-06-16" />
+						<input type="hidden" name="timeFlag" value="1" />
+						<input type="hidden" name="shiftName" value="上午" />
+						<input type="hidden" name="openId" value="" />
+						<input type="hidden" name="fee" value="0" />
+						<input type="hidden" name="treatfee" value="1200" />
+						<input type="hidden" name="doctorName" value="马峰副教授" />
+						<input type="hidden" name="title" value="副教授" />
+						<!--<input type="hidden" name="desc" value="" />-->
+						<input type="hidden" name="hospitalName" value="西京医院" />
+						<input type="hidden" name="deptType" value="" />
+						<input type="hidden" name="svObjectId" value="" />
+						<input type="hidden" name="scheduleId" value="7c21834aae17dccdae053219e948a530" />
+						<!-- V3接口新增入参 -->
+						<input type="hidden" name="doctorLevelCode" value="6101000001000632" />
+						<input type="hidden" name="clinicUnitId" value="594a6ab55d756da01e053c980948a20f" />
+						<!-- 是否有班别类型选择，空表示否(0-否1-是) -->
+						<input type="hidden" name="hasRegisterType" value="" />
+						<input type="hidden" name="tenantId" value="00363" />
+					</form>
+				
+			
+		
+			
+				
+					
+					  <form action="wxInfo!getRegPatient.do" method="get" id="submitForm_001" accept-charset="utf-8">
+					
+						
+						<input type="hidden" name="hospitalId" value="100363001" />
+							
+						
+							
+							
+							   <input type="hidden" name="deptId" value="594a6ab55d756da01e053c980948a20f" />
+							   <input type="hidden" name="deptName" value="肾脏内科门诊" />
+							
+							
+						<input type="hidden" name="doctorId" value="594aae0bb4a41fef6e053c980948a1f6" />
+						<input type="hidden" name="regDate" value="2019-06-16" />
+						<input type="hidden" name="timeFlag" value="2" />
+						<input type="hidden" name="shiftName" value="下午" />
+						<input type="hidden" name="openId" value="" />
+						<input type="hidden" name="fee" value="0" />
+						<input type="hidden" name="treatfee" value="1200" />
+						<input type="hidden" name="doctorName" value="马峰副教授" />
+						<input type="hidden" name="title" value="副教授" />
+						<!--<input type="hidden" name="desc" value="" />-->
+						<input type="hidden" name="hospitalName" value="西京医院" />
+						<input type="hidden" name="deptType" value="" />
+						<input type="hidden" name="svObjectId" value="" />
+						<input type="hidden" name="scheduleId" value="7c21834aae17dccdae053219e948a530" />
+						<!-- V3接口新增入参 -->
+						<input type="hidden" name="doctorLevelCode" value="6101000001000632" />
+						<input type="hidden" name="clinicUnitId" value="594a6ab55d756da01e053c980948a20f" />
+						<!-- 是否有班别类型选择，空表示否(0-否1-是) -->
+						<input type="hidden" name="hasRegisterType" value="" />
+						<input type="hidden" name="tenantId" value="00363" />
+					</form>
+				
+			
+		
+	
+
+	
+		
+			
+				
+					
+					  <form action="wxInfo!getRegPatient.do" method="get" id="submitForm_100" accept-charset="utf-8">
+					
+						
+						<input type="hidden" name="hospitalId" value="100363001" />
+							
+						
+							
+							
+							   <input type="hidden" name="deptId" value="594a6ab55d756da01e053c980948a20f" />
+							   <input type="hidden" name="deptName" value="肾脏内科门诊" />
+							
+							
+						<input type="hidden" name="doctorId" value="594aae0bb4a41fef6e053c980948a1f6" />
+						<input type="hidden" name="regDate" value="2019-06-17" />
+						<input type="hidden" name="timeFlag" value="2" />
+						<input type="hidden" name="shiftName" value="下午" />
+						<input type="hidden" name="openId" value="" />
+						<input type="hidden" name="fee" value="0" />
+						<input type="hidden" name="treatfee" value="1200" />
+						<input type="hidden" name="doctorName" value="马峰副教授" />
+						<input type="hidden" name="title" value="副教授" />
+						<!--<input type="hidden" name="desc" value="" />-->
+						<input type="hidden" name="hospitalName" value="西京医院" />
+						<input type="hidden" name="deptType" value="" />
+						<input type="hidden" name="svObjectId" value="" />
+						<input type="hidden" name="scheduleId" value="7c21834aae17dccdae053219e948a530" />
+						<!-- V3接口新增入参 -->
+						<input type="hidden" name="doctorLevelCode" value="6101000001000632" />
+						<input type="hidden" name="clinicUnitId" value="594a6ab55d756da01e053c980948a20f" />
+						<!-- 是否有班别类型选择，空表示否(0-否1-是) -->
+						<input type="hidden" name="hasRegisterType" value="" />
+						<input type="hidden" name="tenantId" value="00363" />
+					</form>
+				
+			
+		
+	
+
+
+
+<script>"use strict";var doctor=function(){var _currentDeptDesc=sessionStorage.getItem("currentSelectedDeptDesc"),_tenantId=$("#tenantId").val();return{initPage:function(){Util.isIos()||$(".js_focusInput").each(function(){Util.checkNull($(this).val())||$(this).next().html('<i class="kdui-text_blue icon-collection_push kdui-text_xl"></i>'),Util.checkNull($(this).val())&&$(this).next().html('<svg class="icon" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-collection_normal"></use></svg>')}),Util.checkNull(_currentDeptDesc)||$(".js_deptDescBtn").show()},ajaxGetMyDoctorUrl:function(t){var o=t.data("tenantId"),e=t.data("doctorId");$.ajax({type:"get",url:"doctorCard!ajaxGetMyDoctorUrl.do",data:{tenantId:o,doctorId:e},dataType:"json",success:function(o){var e=o.doctorHomeUrl;Util.checkNull(e)||(t.show(),t.on("click",function(){window.location.href=e}),myScroll&&myScroll.refresh())},error:function(){}})},getDocCode:function(t,o,e,i,n,a,c){$.ajax({url:"doctorCard!downloadQrImg.do",data:{hospitalId:t,deptId:o,doctorId:e,hospitalName:i,deptName:n,doctorName:a},type:"post",cache:!1,dataType:"html",success:function(t){ui.showLoading();var o=new Image;o.src=t,o.onload=function(){ui.hideLoading(),$("#testImg :last-child").remove(),$("#docTorImg").css("background-image","url('//images.mhealth100.com/images/doctorpic/"+_tenantId+"/"+e+".png'),url(images/v5/doctor/pic_dc.png)"),$("#doctorName").html(a),$("#hospitalName").html(i),$("#doctorTitle").html(c+"&nbsp;&nbsp;"+n),$("#testImg").append(o),$("#otherDialogBody").show(),$("#mask").show()}},error:function(){ui.hideLoading(),ui.showTip("下载失败"),setTimeout(function(){ui.hideTip()},500)}})},initpopup:function(t){var o=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"",e={dialogTitle:"挂号须知",defaultBtnTile:"取消",primaryBtnTitle:"\t确认",dialogBodyContent:$("#ordernotecontent").html(),triggeredIsClose:"true",defaultBtnCb:function(){},primaryBtnCb:function(){doctor.submitFun(t,o)}};ui_dialog.init(e).show()},choiseDoctor:function(t){var o=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"",e=$("#odernotehidden").html();if(!Util.checkNull(e)){var i=$("#choiseDoctorPage").data("deptId");Util.checkNull(i)&&(i=$("#submitForm"+t+" input[name='deptId']").val());var n=$("#submitForm"+t+" input[name='hospitalId']").val(),a=$("#submitForm"+t+" input[name='doctorId']").val(),c=$("#submitForm"+t+" input[name='tenantId']").val(),d={tenantId:c,hospitalId:n,deptId:i,doctorId:a};e=e.replace("{kd_deptId}",i),e=e.replace("{kd_deptConsult}",'<a class="kdui-text_blue" onclick="doctor.showdDeptConsult('+JSON.stringify(d).replace(/\"/g,"'")+')">科室咨询</a>'),e=Util.pxToRem(e,50);var l=e.split("。");$("#ordernote").html(l.map(function(t,o){return'<div class="kdui-cell_multiln">'+t.toString().replace("。","")+"</div>"}).join(""))}doctor.initpopup(t,o)},submitFun:function(t){var o=(arguments.length>1&&void 0!==arguments[1]&&arguments[1],$("#submitForm"+t)),e=$("#userSessionId").val(),i=o.find("input[name='deptName']").val();sessionStorage.setItem("deptName_"+e,i),$("#submitForm"+t).submit()},setRemark:function(t,o){var e=o;$("#"+t).attr("onclick","doctor.switchRemark(this)"),$("#"+t).html(e)},switchRemark:function(t){$(t).toggleClass("kdui-cell_warp_ln2"),$(t).toggleClass("kdui-cell_multiln"),myScroll.refresh()},setIntroduction:function(t,o){var e=o;$("#"+t).attr("onclick","doctor.switchIntroduction(this)"),$("#"+t).html(e)},switchIntroduction:function(t){$(t).toggleClass("kdui-cell_warp_ln2"),$(t).toggleClass("kdui-cell_multiln"),myScroll.refresh()},initactionsheet:function(t,o,e){var i=o+"("+e+")";Util.checkNull(e)&&(i=o);var n={actionsheetTitle:i,actionsheetMeuns:t,setActionsheetMeunsType:"html",actionsheetCancle:"返回"};ui_actionsheet.init(n).show()},popmore:function(t,o,e){var i=$(".doc"+t+" a").clone();doctor.initactionsheet(i,o,e)},focusDoc:function focusDoc(index,deptId,deptName,doctorId,doctorName,hospitalId,title,regId,healthcardNo){showLoading("收藏中..."),""==$("#focusId"+index).val()?$.ajax({url:"focus!addFocus.do",data:{deptId:deptId,deptName:deptName,desc:$("#desc_"+index).html(),doctorId:doctorId,doctorName:doctorName,hospitalId:hospitalId,title:title,regId:regId,healthcardNo:healthcardNo},type:"post",cache:!1,dataType:"json",success:function success(data){var reportData=eval(data);hideLoading(),1==reportData?(ui.showTip("收藏失败，请稍后再试"),setTimeout(function(){ui.hideTip()},500)):data.focusId?($("#focusId"+index).val(data.focusId),$("#focus"+index).html('<i class="kdui-text_blue icon-collection_push kdui-text_xl"></i>'),ui.showTip("已收藏"),setTimeout(function(){ui.hideTip()},500)):2==reportData&&(ui.showTip("已到达关注上限！"),setTimeout(function(){ui.hideTip()},1e3))},error:function(){hideLoading(),ui.showTip("收藏失败，请稍后再试"),setTimeout(function(){ui.hideTip()},500)}}):(showLoading("正在取消..."),$.ajax({url:"focus!removeFocus.do",data:{focusId:$("#focusId"+index).val()},type:"post",cache:!1,dataType:"json",success:function(t){hideLoading(),$("#focusId"+index).val(""),$("#focus"+index).html('<svg class="icon" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-collection_normal"></use></svg>'),ui.showTip("已取消"),setTimeout(function(){ui.hideTip()},500)},error:function(){hideLoading(),ui.showTip("取消失败，请稍后再试"),setTimeout(function(){ui.hideTip()},500)}}))},showDeptDesc:function(t){var o={dialogTitle:t,defaultBtnTile:"",primaryBtnTitle:"关闭",dialogBodyContent:'<div class="kdui-cell_multiln">'+_currentDeptDesc+"</div>"};ui_dialog.init(o).show()},clickFunction:function(){$("#otherDialogBody").hide(),$("#mask").hide()},showdDeptConsult:function(t){var o={ajaxUrl:"doctorCard!ajaxGetConsultDeptUrl.do",ajaxData:t,loadingText:"加载中...",method:"post",loadingType:"block",successCb:function(t){t.datas&&!Util.checkNull(t.datas.url)?window.location.href=t.datas.url:ui.showTip("该科室暂未开通咨询功能")}};new AjaxApi(o).run()}}}();
+//# sourceMappingURL=choise_doctor.min.js.map
+</script>
+<script src="/ip-pat-web/js/jquery/lazyload/jquery.lazyload.min.js?2018051162037" defer="defer"></script>
+<script type="text/javascript">
+	function bodyOnload() {
+		doctor.initPage();
+		// 滑动的过程中异步请求是否该医生有专属医生功能
+		$(".js_doctor-home").lazyload({
+			threshold: 200,
+			load: function(element) {
+				doctor.ajaxGetMyDoctorUrl(element)
+			}
+		})
+		ui.setTabStatus('xinxi')
+		ui.tabSelect(function() {
+			if($(this).data('current') === 'xinxi') {
+				$('#docDesc').hide()
+				$('#listMessage').show()
+				if(myScroll) myScroll.refresh()
+			} else {
+				$('#listMessage').hide()
+				$('#docDesc').show()
+				if(myScroll) myScroll.refresh()
+			}
+		})
+	}
+</script>
+
+<script>
+	var ifreload = sessionStorage.setItem("refresh", true)
+</script>
+<!-- 引入记录页面操作日志需要用到隐藏form表单 -->
+<form id="pageOperatingLogsForm" class="hide">
+	<input type="hidden" name="pageOperatingLogs.pageId" id="pageOperatingLogs_pageId" value="DOCTOR_DETAIL_INFO" />
+</form>
+<!-- 通用页面底部 -->
+
+<!-- 全局引入加载中loading -->
+
+<div id="loadingToast" class="kdui-hide">
+	<div class="kdui-mask_transparent"></div>
+	<div class="kdui-toast">
+		<i class="kdui-loading kdui-icon_toast"></i>
+		<p class="kdui-toast__content">数据加载中...</p>
+	</div>
+</div>
+<!-- 全局引入toast结果提示  -->
+
+<div id="toast" class="kdui-hide">
+	<div class="kdui-mask_transparent"></div>
+	<div class="kdui-toast kdui-toast_mini">
+		<p class="kdui-toast__content">取消成功</p>
+	</div>
+</div>
+<div class="footer-hospitial-name" style="display:none"></div> 
+<div class="footer3"></div>
+<!-- 新版调用接口需要用到的token -->
+<input type="hidden" id="userToken" value="GxyxVH07O1LHoN6tk1PtbQ=="/>
+<input type="hidden" id="userOpenId" value="oxyzl06WZiZDNwYSu0RiYQdUybvE"/>
+<input type="hidden" id="userSessionId" value="B5A04F863D2E89F665290E7C637934EF"/>
+
+<!--维护提示-->
+
+<!-- 判断是否开通了预约挂号排班界面新增当天排班 -->
+
+
+
+<!-- <script src="/ip-pat-web/js/fastclick/fastclick.min.js" async="async"></script>
+<script src="/ip-pat-web/js/iscroll/iscroll.min.js" defer="defer"></script>
+<script src="/ip-pat-web/js/weixin/Bridge.min.js?v=c1e9238a6e" defer="defer"></script> -->
+<!-- 内联方式的引入v5版本通用js -->
+<script>"use strict";function _loadCss(e){var t={dataType:"text",success:function(e){var t=document.createElement("style");t.innerHTML=e,document.getElementsByTagName("head")[0].appendChild(t)}};$.cachedScript(e,t)}function _getIconFontResource(){$.cachedScript("//at.alicdn.com/t/font_313159_7t8r7qfr01o.js"),_loadCss("//at.alicdn.com/t/font_322443_hg9du3wuo8q.css")}function load(){setTimeout(function(){_getIconFontResource()},100),_setCurrentEnv(),$.cachedScript(Util.getBasePath()+"/js/v5/raven/raven.3.26.2.min.js",{success:function(e){try{catchJsError()}catch(e){console.error("执行坚听js error脚本错误")}}}),FastClick.attach(document.body);var e={};if(isShowTenantName&&"true"===isShowTenantName&&(e.hospitalShortName=hospitalShortName),showCopyright(e),"true"===isAppointmentRegisterMerge&&modifyTitle(),"true"!==$("#showOption").val()){Bridge.getInstance({jsApiList:["hideOptionMenu"]});var t=!1;Bridge.ready(function(){t||(t=!0,Bridge.instant.hideOptionMenu())})}showMaintenance(),"undefined"!=typeof loadIscroll&&loadIscroll(),"undefined"!=typeof bodyOnload&&bodyOnload(),Util.checkNull(tenantName)||"wxcity"===isWeixincity&&showName(tenantName),"undefined"!=typeof showAd&&showAd();var n=$("#pageOperatingLogs_pageId");void 0===n||Util.checkNull(n.val())||ajaxToPrintPageLogs(),"00404"===tenantId?($.cachedScript(Util.getBasePath()+"/js/sa/sa.js"),window._hmt=void 0):(window._hmt=void 0,$.cachedScript(Util.getBasePath()+"/js/baidu/baiduStatistics.min.js")),setTimeout(function(){"undefined"!=typeof myScroll&&myScroll.refresh()},100)}function showMaintenance(){if($(".js_kdui-maintenance")[0]){var e={dialogRoot:".js_kdui-maintenance",dialogTitle:"系统维护时间提示",primaryBtnTitle:"我知道了",defaultBtnTile:"",dialogBodyContent:$("#maintenanceTime").html()+"为系统维护时间，在该时间段内系统将限制支付及退费。",primaryBtnCb:function(){var e={method:"post",ajaxUrl:Util.getBasePath()+"/commonEntry!ajaxchangeUserSystemMaintenanceToHaspress.do",ajaxData:{openId:$("#userOpenId").val()},loadingText:"正在关闭窗口...",loadingType:"block",successCb:function(e){},failCb:function(e){},errorCb:function(){}};new AjaxApi(e).run()}};ui_dialog.init(e).show()}}function _setCurrentEnv(){var e=window.location.hostname,t="prod";"dev.mhealth100.com"===e?t="dev":"test3.mhealth100.com"===e&&(t="test"),window.sessionStorage.setItem("ip-pat-web-env",t)}function showName(e){$(".js__copyright").html(e)}function checkSensitive(e,t){Util.checkNull(e)?t.call(null,null,null):$.ajax({url:"//api.mhealth100.com/open-api/sensitive.do",contentType:"application/json",data:JSON.stringify({text:e}),type:"post",success:function(e){if(e=JSON.parse(e||"{}"),console.log(e),e&&"0"==e.resultCode){var n=JSON.parse(e.emotion||"{}"),o=JSON.parse(e.polity||"{}");t.call(null,n,o)}else t.call(null,null,null)},error:function(){ui.hideLoading(),t.call(null,null,null)}})}function catchJsError(){Raven.config("//3b2b33a1556e4a5aa1afb2141ff6bdef@sentry.mhealth100.com//2",{release:"update@2019-06-05",whitelistUrls:[/^https\:\/\/.*\.mhealth100\.com/],environment:window.sessionStorage.getItem("ip-pat-web-env"),ignoreErrors:["$ is not a function","$.extend is not a function","$.cachedScript is not a function","$.ajax is not a function","$.post is not a function","$.smartScroll is not a function","Cannot read property 'refresh' of undefined"],tags:{tenantId:tenantId,openId:openId,healthCardNo:healthCardNo}}).install(),window.addEventListener&&window.addEventListener("error",function(e){if(e.message)/Script error\./.test(e.message)||Raven.captureException(e,{logger:"selfupload"});else{var t,n=(t=e.target?e.target:e.srcElement)&&t.outerHTML;n&&n.length>200&&(n=n.slice(0,200));var o={message:"resourceError",target:{src:t&&t.src}};/^https?.*\.mhealth100.com.*\.js(\?|$)/.test(o.target.src)&&Raven.captureMessage(o.target.src,{logger:o.message})}},!0),window.addEventListener&&window.addEventListener("unhandledrejection",function(e){Raven.captureException(e.reason,{logger:"promise"})})}function showCopyright(e){var t=new Date,n=t.getFullYear(),o="金蝶医疗软件科技有限公司";void 0!==e&&void 0!==e.hospitalShortName&&(o=e.hospitalShortName+" 金蝶医疗"),$(".js__copyright").html("Copyright © 1993-"+n+" "+o)}function modifyTitle(){document.title=document.title.replace("预约挂号","")}function ajaxToPrintPageLogs(){$.ajax({url:Util.getBasePath()+"/pageStatisticsLogs!printPageOperatLogs.do",data:$("#pageOperatingLogsForm").serialize(),type:"post",cache:!1,dataType:"json",success:function(e){},error:function(){}})}function showLoading(e){ui.showLoading(e)}function hideLoading(){ui.hideLoading()}var tenantId="00363",openId="oxyzl06WZiZDNwYSu0RiYQdUybvE",healthCardNo="1800600101",tenantName="西京医院",isWeixincity="",isShowTenantName='false',hospitalShortName='',isAppointmentRegisterMerge="true";jQuery.cachedScript=function(e,t){return t=$.extend({dataType:"script",cache:!0,timeout:3e3,url:e},t||{}),jQuery.ajax(t)};var listenerHisory=function(){var e=sessionStorage.getItem("aiShenUrl");Util.checkNull(e)||"undefined"==typeof history||(history.pushState(null,null,document.URL+"&rand="+Math.random()),window.addEventListener("popstate",function(t){console.log("通过popstate回到前面一个页面,aiShenUrl"+e),window.location.href=e}))};"serviceWorker"in navigator&&window.addEventListener("load",function(){navigator.serviceWorker.register("/ip-pat-web/service-worker.js?201807190002").then(function(e){console.log("ServiceWorker registration successful with scope: ",e.scope)}).catch(function(e){console.log("ServiceWorker registration failed: ",e)})});
+//# sourceMappingURL=common_footer_v5.min.js.map
+</script>
+</body>
+</html>
